@@ -11,8 +11,6 @@ const GLib = imports.gi.GLib;
 
 const Util = imports.misc.util;
 
-const Signals = imports.signals;
-
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
@@ -22,8 +20,6 @@ const _ = Gettext.gettext;
 
 //-------------------------------------------------
 
-let _foldersSchema;
-let _folderList;
 let _settings;
 
 function init() {
@@ -56,7 +52,6 @@ let injections=[];
 
 //---------------------------------------------------------------------------
 
-
 /* this function injects items in AppIconMenu's _redisplay method. */
 function injectionInAppsMenus() {
 	injections['_redisplay'] = injectToFunction(AppDisplay.AppIconMenu.prototype, '_redisplay', function(){
@@ -65,7 +60,6 @@ function injectionInAppsMenus() {
 		let id = this._source.app.get_id();
 		
 		let Ritems = RecentManager.get_items();
-		//available types are: text, image, audio, video, application, multipart, message, model
 		
 		let menuItems = [];
 		
@@ -80,21 +74,50 @@ function injectionInAppsMenus() {
 				}
 				let content = contents.toString();
 				
-				let recents = this._appendMenuItem(_("Récents"));
-				let corbeille = this._appendMenuItem(_("Corbeille"));
-				let autres = this._appendMenuItem(_("Autres emplacements"));
+				let buttons_item = new PopupMenu.PopupBaseMenuItem({ reactive: false, can_focus: false })
+		
+				let recentsButton = new St.Button({
+					reactive: true,
+					can_focus: true,
+					track_hover: true,
+					accessible_name: _("Recent Files"),
+					style_class: 'system-menu-action',
+				});
+				recentsButton.child = new St.Icon({ icon_name: 'document-open-recent-symbolic' });
+				buttons_item.actor.add(recentsButton, { expand: true, x_fill: false });
+		
+				let trashButton = new St.Button({
+					reactive: true,
+					can_focus: true,
+					track_hover: true,
+					accessible_name: _("Trash"),
+					style_class: 'system-menu-action',
+				});
+				trashButton.child = new St.Icon({ icon_name: 'user-trash-symbolic' });
+				buttons_item.actor.add(trashButton, { expand: true, x_fill: false });
+		
+				let otherButton = new St.Button({
+					reactive: true,
+					can_focus: true,
+					track_hover: true,
+					accessible_name: _("Recent Files"),
+					style_class: 'system-menu-action',
+				});
+				otherButton.child = new St.Icon({ icon_name: 'folder-remote-symbolic' });
+				buttons_item.actor.add(otherButton, { expand: true, x_fill: false });
 				
-				recents.connect('activate', Lang.bind(this, function() {
+				recentsButton.connect('clicked', Lang.bind(this, function() {
 					Util.trySpawnCommandLine('nautilus recent:///');
 				}));
-				corbeille.connect('activate', Lang.bind(this, function() {
-					Util.trySpawnCommandLine('nautilus trash:/');
+				trashButton.connect('clicked', Lang.bind(this, function() {
+					Util.trySpawnCommandLine('nautilus trash:///');
 				}));
-				autres.connect('activate', Lang.bind(this, function() {
+				otherButton.connect('clicked', Lang.bind(this, function() {
 					Util.trySpawnCommandLine('nautilus other-locations:///');
 				}));
+				this.addMenuItem(buttons_item);
 				
-				this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Signets"));
+				this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
 				this.addMenuItem(this.bookmarksMenu);
 				
 				let bookmarks = [];
@@ -119,80 +142,47 @@ function injectionInAppsMenus() {
 						Util.trySpawnCommandLine(this[1]);
 					}));
 				}
-			
+				
+//				this.bookmarksMenu.setSubmenuShown(true);
+				
 				break;
 			case 'gnome-tweak-tool.desktop':
-				let exts = this._appendMenuItem(_("Gérer les extensions"));
+			case 'org.gnome.tweaks.desktop':
+				let exts = this._appendMenuItem(_("Manage extensions"));
 				exts.connect('activate', Lang.bind(this, function() {
 					Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 				}));
 				break;
-			case 'org.gnome.gedit.desktop':
-				let textType = ['text'];//, 'application'];
-				i = 0;
-				while(menuItems.length < 8 || i < 15) {
-					if(Ritems[i] == null || Ritems[i] == undefined) { break; }
-					let itemtype = Ritems[i].get_mime_type();
-		       		if (textType.indexOf((itemtype.split("/"))[0]) != -1) {
-						menuItems.push([
-							this._appendMenuItem(Ritems[i].get_display_name()),
-							Ritems[i].get_uri()
-						]);
-					}
-					i++;
-				}
-				for(var j = 0; j < menuItems.length-1; j++) {
-					menuItems[j][0].connect('activate', Lang.bind(menuItems[j], function() {
-						Gio.app_info_launch_default_for_uri(this[1], global.create_app_launch_context(0, -1));
-					}));
-				}
-				break;
-			case 'org.gnome.Totem.desktop':
-			case 'mpv.desktop':
-			case 'io.github.GnomeMpv.desktop':
-				let mediatype = ['video'];
-				i = 0;
-				while(menuItems.length < 8 || i < 15) {
-					if(Ritems[i] == null || Ritems[i] == undefined) { break; }
-					let itemtype = Ritems[i].get_mime_type();
-		       		if (mediatype.indexOf((itemtype.split("/"))[0]) != -1) {
-						menuItems.push([
-							this._appendMenuItem(Ritems[i].get_display_name()),
-							Ritems[i].get_uri()
-						]);
-					}
-					i++;
-				}
-				for(var j = 0; j < menuItems.length-1; j++) {
-					menuItems[j][0].connect('activate', Lang.bind(menuItems[j], function() {
-						Gio.app_info_launch_default_for_uri(this[1], global.create_app_launch_context(0, -1));
-					}));
-				}
-				
-			case 'org.gnome.Music.desktop':
-			case 'rhythmbox.desktop':
-				let musictype = ['audio'];
-				i = 0;
-				while(menuItems.length < 8 || i < 15) {
-					if(Ritems[i] == null || Ritems[i] == undefined) { break; }
-					let itemtype = Ritems[i].get_mime_type();
-		       		if (musictype.indexOf((itemtype.split("/"))[0]) != -1) {
-						menuItems.push([
-							this._appendMenuItem(Ritems[i].get_display_name()),
-							Ritems[i].get_uri()
-						]);
-					}
-					i++;
-				}
-				for(var j = 0; j < menuItems.length-1; j++) {
-					menuItems[j][0].connect('activate', Lang.bind(menuItems[j], function() {
-						Gio.app_info_launch_default_for_uri(this[1], global.create_app_launch_context(0, -1));
-					}));
-				}
-				break;
 			default:
-				log('[quicklist] unknown app');
+				i = 0;
+				let appinfo = this._source.app.get_app_info();
+				if (appinfo == null){
+					return;
+				} else if (!appinfo.supports_uris()) {
+					return;
+				}
+				app_types = this._source.app.get_app_info().get_supported_types()
+				if (app_types == null){
+					return;
+				}
+				while(menuItems.length < 8 || i < 15) {
+					if(Ritems[i] == null || Ritems[i] == undefined) { break; }
+					let itemtype = Ritems[i].get_mime_type();
+					if (app_types.indexOf(itemtype) != -1) {
+						menuItems.push([
+							this._appendMenuItem(Ritems[i].get_display_name()),
+							Ritems[i].get_uri()
+						]);
+					}
+					i++;
+				}
+				for(var j = 0; j < menuItems.length-1; j++) {
+					menuItems[j][0].connect('activate', Lang.bind(menuItems[j], function() {
+						appinfo.launch_uris([this[1]], global.create_app_launch_context(0, -1))
+					}));
+				}
 				break;
+				
 		}
 	});
 }
@@ -203,12 +193,10 @@ let RecentManager;
 
 function enable() {
 	RecentManager = new Gtk.RecentManager();
-		
 	
 //	_settings = Convenience.getSettings();
 
 	injectionInAppsMenus();
-	
 }
 
 //-------------------------------------------------
@@ -217,9 +205,7 @@ function disable() {
 	
 	
 	removeInjection(AppDisplay.AppIconMenu.prototype, injections, '_redisplay');
-	
 }
-
 
 
 //-------------------------------------------------
