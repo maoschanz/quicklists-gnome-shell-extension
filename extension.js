@@ -20,7 +20,7 @@ const _ = Gettext.gettext;
 
 //-------------------------------------------------
 
-let _settings;
+let SETTINGS;
 
 function init() {
 	Convenience.initTranslations();
@@ -68,9 +68,9 @@ function injectionInAppsMenus() {
 			case 'nemo.desktop':
 				
 				let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
-				let [result, contents] = file.load_contents(null);
+				let [result, contents] = file.load_contents(null); //TODO l'autre emplacement pour le fichier ?
 				if (!result) {
-				    log('Could not read bookmarks file');
+					log('Could not read bookmarks file');
 				}
 				let content = contents.toString();
 				
@@ -80,7 +80,7 @@ function injectionInAppsMenus() {
 					reactive: true,
 					can_focus: true,
 					track_hover: true,
-					accessible_name: _("Recent Files"),
+					accessible_name: _("Recent files"),
 					style_class: 'system-menu-action',
 				});
 				recentsButton.child = new St.Icon({ icon_name: 'document-open-recent-symbolic' });
@@ -100,7 +100,7 @@ function injectionInAppsMenus() {
 					reactive: true,
 					can_focus: true,
 					track_hover: true,
-					accessible_name: _("Recent Files"),
+					accessible_name: _("Other places"),
 					style_class: 'system-menu-action',
 				});
 				otherButton.child = new St.Icon({ icon_name: 'folder-remote-symbolic' });
@@ -117,8 +117,10 @@ function injectionInAppsMenus() {
 				}));
 				this.addMenuItem(buttons_item);
 				
-				this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
-				this.addMenuItem(this.bookmarksMenu);
+				if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
+					this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
+					this.addMenuItem(this.bookmarksMenu);
+				}
 				
 				let bookmarks = [];
 				
@@ -137,23 +139,28 @@ function injectionInAppsMenus() {
 				}
 				
 				for(var j = 0; j < content.split('\n').length-1; j++) {
-					this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]),
+					if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
+						this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]);
+					} else {
+						this.addMenuItem(bookmarks[j][0]);
+					}
 					bookmarks[j][0].connect('activate', Lang.bind(bookmarks[j], function() {
 						Util.trySpawnCommandLine(this[1]);
 					}));
 				}
-				
-//				this.bookmarksMenu.setSubmenuShown(true);
-				
-				break;
+			break;
 			case 'gnome-tweak-tool.desktop':
 			case 'org.gnome.tweaks.desktop':
 				let exts = this._appendMenuItem(_("Manage extensions"));
 				exts.connect('activate', Lang.bind(this, function() {
 					Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 				}));
-				break;
+			break;
+			
 			default:
+				if (0 == SETTINGS.get_int('max-recents')) {
+					return;
+				}
 				i = 0;
 				let appinfo = this._source.app.get_app_info();
 				if (appinfo == null){
@@ -161,16 +168,26 @@ function injectionInAppsMenus() {
 				} else if (!appinfo.supports_uris()) {
 					return;
 				}
-				app_types = this._source.app.get_app_info().get_supported_types()
+				let app_types = this._source.app.get_app_info().get_supported_types()
 				if (app_types == null){
 					return;
 				}
-				while(menuItems.length < 8 || i < 15) {
+				if (SETTINGS.get_boolean('use-submenu-recent')) {
+					this.recentMenu = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
+					this.addMenuItem(this.recentMenu);
+				}
+				while(menuItems.length < SETTINGS.get_int('max-recents') && i < 300) {
 					if(Ritems[i] == null || Ritems[i] == undefined) { break; }
 					let itemtype = Ritems[i].get_mime_type();
 					if (app_types.indexOf(itemtype) != -1) {
+						let recent_item = new PopupMenu.PopupMenuItem( Ritems[i].get_display_name() );
+						if (SETTINGS.get_boolean('use-submenu-recent')) {
+							this.recentMenu.menu.addMenuItem(recent_item);
+						} else {
+							this.addMenuItem(recent_item);
+						}
 						menuItems.push([
-							this._appendMenuItem(Ritems[i].get_display_name()),
+							recent_item,
 							Ritems[i].get_uri()
 						]);
 					}
@@ -181,8 +198,7 @@ function injectionInAppsMenus() {
 						appinfo.launch_uris([this[1]], global.create_app_launch_context(0, -1))
 					}));
 				}
-				break;
-				
+			break;
 		}
 	});
 }
@@ -193,19 +209,15 @@ let RecentManager;
 
 function enable() {
 	RecentManager = new Gtk.RecentManager();
-	
-//	_settings = Convenience.getSettings();
-
+	SETTINGS = Convenience.getSettings();
 	injectionInAppsMenus();
 }
 
 //-------------------------------------------------
 
 function disable() {
-	
-	
 	removeInjection(AppDisplay.AppIconMenu.prototype, injections, '_redisplay');
 }
 
-
 //-------------------------------------------------
+
