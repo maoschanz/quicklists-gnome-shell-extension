@@ -15,13 +15,13 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
-//-----------------------------------------------
+//------------------------------------------------------------------------------
 
 function init() {
 	Convenience.initTranslations();
 }
 
-//-----------------------------------------------
+//------------------------------------------------------------------------------
 
 const PrefsPage = new Lang.Class({
 	Name: "PrefsPage",
@@ -58,20 +58,22 @@ const PrefsPage = new Lang.Class({
 				use_markup: true,
 			}));
 		}
-	
-		let a = new Gtk.ListBox({
+		
+		let fr = new Gtk.Frame();
+		let lb = new Gtk.ListBox({
 			can_focus: true,
 			selection_mode: Gtk.SelectionMode.NONE,
 		});
-		section.add(a);
+		section.add(fr);
+		fr.add(lb);
 		this.stackpageMainBox.add(section);
-		return a;
+		return lb;
 	},
 
 	add_row: function(filledbox, section) {
 		let a = new Gtk.ListBoxRow({
 			can_focus: true,
-			selectable: false,	
+			selectable: false,
 		});
 		a.add(filledbox);
 		section.add(a);
@@ -97,28 +99,22 @@ const QuicklistsPrefsWidget = new Lang.Class({
 			stack: this
 		});
 		this.switcher.show_all();
+		
+		this.buildSettingsPage();
+		this.buildAboutPage();
 	},
 	
-	add_page: function (id, title) {
-		let page = new PrefsPage();
-		this.add_titled(page, id, title);
-		return page;
-	}
-});
-
-let SETTINGS = Convenience.getSettings();
-
-function buildPrefsWidget() {
-	let widget = new QuicklistsPrefsWidget();
-	
-	let settingsPage = widget.add_page("settings", _("Settings"));	
-	
-	let bookmarksSection = settingsPage.add_section(_("Bookmarks"));
-	let recentSection = settingsPage.add_section(_("Recent files"));
+	buildSettingsPage () {
+		let settingsPage = this.add_page("settings", _("Settings"));
+		let bookmarksSection = settingsPage.add_section(_("Bookmarks"));
+		let recentSection = settingsPage.add_section(_("Recent files"));
 	
 		//-------------------------------------------------
 		
-		let bookmarksMenu_label = _("Display bookmarks in a submenu:");
+		let bookmarksMenu_label = new Gtk.Label({
+			label: _("Display bookmarks in a submenu:"),
+			halign: Gtk.Align.START
+		});
 		
 		let bookmarksMenu_switch = new Gtk.Switch();
 		bookmarksMenu_switch.set_state(false);
@@ -138,12 +134,15 @@ function buildPrefsWidget() {
 			spacing: 15,
 			margin: 6,
 		});
-		bookmarksMenu_box.pack_start(new Gtk.Label({ label: bookmarksMenu_label, halign: Gtk.Align.START }), false, false, 0);
+		bookmarksMenu_box.pack_start(bookmarksMenu_label, false, false, 0);
 		bookmarksMenu_box.pack_end(bookmarksMenu_switch, false, false, 0);
 		
 		//------------------------------------------------
 		
-		let recentFilesNumber_label = _("Number of recent files in a menu:");
+		let recentFilesNumber_label = new Gtk.Label({
+			label: _("Number of recent files in a menu:"),
+			halign: Gtk.Align.START
+		});
 		
 		let recentFilesNumber_spinButton = new Gtk.SpinButton();
 		recentFilesNumber_spinButton.set_sensitive(true);
@@ -163,12 +162,15 @@ function buildPrefsWidget() {
 			margin: 6,
 			tooltip_text: _("The maximum number of recent files which will be displayed in the menu of an application's icon."),
 		});
-		recentFilesNumber_box.pack_start(new Gtk.Label({ label: recentFilesNumber_label, halign: Gtk.Align.START }), false, false, 0);
+		recentFilesNumber_box.pack_start(recentFilesNumber_label, false, false, 0);
 		recentFilesNumber_box.pack_end(recentFilesNumber_spinButton, false, false, 0);
 		
 		//------------------------------------------------
 		
-		let recentFilesMenu_label = _("Display recent files in a submenu:");
+		let recentFilesMenu_label = new Gtk.Label({
+			label: _("Display recent files in a submenu:"),
+			halign: Gtk.Align.START
+		});
 		
 		let recentFilesMenu_switch = new Gtk.Switch();
 		recentFilesMenu_switch.set_state(false);
@@ -188,32 +190,34 @@ function buildPrefsWidget() {
 			spacing: 15,
 			margin: 6,
 		});
-		recentFilesMenu_box.pack_start(new Gtk.Label({ label: recentFilesMenu_label, halign: Gtk.Align.START }), false, false, 0);
+		recentFilesMenu_box.pack_start(recentFilesMenu_label, false, false, 0);
 		recentFilesMenu_box.pack_end(recentFilesMenu_switch, false, false, 0);
 		
 		//------------------------------------------------
 		
-	settingsPage.add_row(bookmarksMenu_box, bookmarksSection);
-	settingsPage.add_row(recentFilesNumber_box, recentSection);
-	settingsPage.add_row(recentFilesMenu_box, recentSection);
+		settingsPage.add_row(bookmarksMenu_box, bookmarksSection);
+		settingsPage.add_row(recentFilesNumber_box, recentSection);
+		settingsPage.add_row(recentFilesMenu_box, recentSection);
+	},
 	
-	//------------------------------------
-
-	let aboutPage = widget.add_page("about", _("About"));
+	buildAboutPage () {
+		let aboutPage = this.add_page("about", _("About"));
 		
-		let a_name = '<b>' + Me.metadata.name.toString() + '</b>';
-		let a_uuid = Me.metadata.uuid.toString();
-		let a_description = _(Me.metadata.description.toString());
-		
-		let label_name = new Gtk.Label({ label: a_name, use_markup: true, halign: Gtk.Align.CENTER });
-		
+		let label_name = new Gtk.Label({
+			label: '<b>' + Me.metadata.name.toString() + '</b>',
+			use_markup: true,
+			halign: Gtk.Align.CENTER
+		});
 		let label_warning = new Gtk.Label({
 			label: "NOT COMPATIBLE WITH DASH-TO-DOCK THUMBNAIL PREVIEWS",
 			wrap: true,
 			halign: Gtk.Align.CENTER
 		});
-		let label_description = new Gtk.Label({ label: a_description, wrap: true, halign: Gtk.Align.CENTER });
-		
+		let label_description = new Gtk.Label({
+			label: _(Me.metadata.description.toString()),
+			wrap: true,
+			halign: Gtk.Align.CENTER
+		});
 		let label_contributors = new Gtk.Label({
 			label: "Author: Romain F. T.",
 			wrap: true,
@@ -226,29 +230,42 @@ function buildPrefsWidget() {
 		about_box.pack_start(label_warning, false, false, 0);
 		about_box.pack_start(label_contributors, false, false, 0);
 		
-		let LinkBox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, spacing: 10 });
-		let a_version = ' (v' + Me.metadata.version.toString() + ') ';
+		let linkBox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, spacing: 10 });
 		
 		let url_button = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
 			uri: Me.metadata.url.toString()
 		});
 		
-		LinkBox.pack_start(url_button, false, false, 0);
-		LinkBox.pack_end(new Gtk.Label({ label: a_version, halign: Gtk.Align.START }), false, false, 0);
+		linkBox.pack_start(url_button, false, false, 0);
+		linkBox.pack_end(new Gtk.Label({
+			label: ' (v' + Me.metadata.version.toString() + ') ',
+			halign: Gtk.Align.START
+		}), false, false, 0);
 		
-		aboutPage.stackpageMainBox.pack_end(LinkBox, false, false, 0);
+		aboutPage.stackpageMainBox.pack_end(linkBox, false, false, 0);
+		
+		aboutPage.add_widget(about_box);
+	},
 	
-	aboutPage.add_widget(about_box);
+	add_page: function (id, title) {
+		let page = new PrefsPage();
+		this.add_titled(page, id, title);
+		return page;
+	}
+});
 
-	//----------------------------------------------------
+let SETTINGS = Convenience.getSettings();
 
+function buildPrefsWidget() {
+	let widget = new QuicklistsPrefsWidget();
+	
 	Mainloop.timeout_add(0, () => {
 		let headerBar = widget.get_toplevel().get_titlebar();
 		headerBar.custom_title = widget.switcher;
 		return false;
 	});
-
+	
 	widget.show_all();
 	
 	return widget;
