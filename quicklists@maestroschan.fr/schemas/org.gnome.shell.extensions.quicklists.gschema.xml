@@ -2,7 +2,7 @@
 <schemalist gettext-domain="quicklists">
 	<schema id="org.gnome.shell.extensions.quicklists" path="/org/gnome/shell/extensions/quicklists/">
 		<key type="i" name="max-recents">
-			<default>8</default>
+			<default>20</default>
 			<summary>Max number of recent file per app</summary>
 			<description>The maximum number of recent files that should be displayed for an app.</description>
 		</key>
