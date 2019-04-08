@@ -55,7 +55,7 @@ function removeInjection(object, injection, name) {
 		object[name] = injection[name];
 }
 
-let injections=[];
+let injections = [];
 
 //---------------------------------------------------------------------------
 
@@ -174,13 +174,11 @@ function injectionInAppsMenus() {
 				}
 				let nbItems = 0;
 				for (i=0; i<recentItems.length; i++) {
-					if (recentItems[i] == null || recentItems[i] == undefined) {
-						break; // XXX redondant ?
+					if ( !recentItems[i].exists() ) {
+						// rien
 					} else if (nbItems >= SETTINGS.get_int('max-recents')) {
 						break;
-					}
-					let itemtype = recentItems[i].get_mime_type();
-					if (app_types.indexOf(itemtype) != -1) {
+					} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
 						let label = recentItems[i].get_display_name();
 						let recent_item = new PopupMenu.PopupMenuItem(label);
 						if (SETTINGS.get_boolean('use-submenu-recent')) {
