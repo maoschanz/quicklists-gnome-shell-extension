@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-21 11:59+0100\n"
+"PO-Revision-Date: 2019-04-09 12:03+0200\n"
+"Language-Team: Dutch <vistausss@outlook.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl_NL\n"
+
+#: quicklists@maestroschan.fr/extension.js:83
+#: quicklists@maestroschan.fr/extension.js:176
+#: quicklists@maestroschan.fr/prefs.js:117
+msgid "Recent files"
+msgstr "Recente bestanden"
+
+#: quicklists@maestroschan.fr/extension.js:93
+msgid "Trash"
+msgstr "Prullenbak"
+
+#: quicklists@maestroschan.fr/extension.js:103
+msgid "Other places"
+msgstr "Overige locaties"
+
+#: quicklists@maestroschan.fr/extension.js:121
+#: quicklists@maestroschan.fr/prefs.js:116
+msgid "Bookmarks"
+msgstr "Bladwijzers"
+
+#: quicklists@maestroschan.fr/extension.js:154
+msgid "Manage extensions"
+msgstr "Uitbreidingen beheren"
+
+#: quicklists@maestroschan.fr/prefs.js:114
+msgid "Settings"
+msgstr "Instellingen"
+
+#: quicklists@maestroschan.fr/prefs.js:121
+msgid "Display bookmarks in a submenu:"
+msgstr "Bladwijzers tonen in submenu:"
+
+#: quicklists@maestroschan.fr/prefs.js:136
+msgid ""
+"Nautilus and Nemo icons will display your bookmarks. If you have many, a "
+"submenu is recommended."
+msgstr ""
+"Nautilus en Nemo tonen je bladwijzers. Als je er veel hebt, dan wordt een "
+"submenu aanbevolen."
+
+#: quicklists@maestroschan.fr/prefs.js:146
+msgid "Number of recent files in a menu:"
+msgstr "Aantal recente bestanden in menu:"
+
+#: quicklists@maestroschan.fr/prefs.js:164
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
+"Het maximaal aantal recente bestanden dat wordt getoond in het menu van de "
+"betreffende toepassing."
+
+#: quicklists@maestroschan.fr/prefs.js:171
+msgid "Display recent files in a submenu:"
+msgstr "Recente bestanden tonen in submenu:"
+
+#: quicklists@maestroschan.fr/prefs.js:186
+msgid ""
+"Applications' icons will display recently opened files they can open. If you "
+"want many, a submenu is recommended."
+msgstr ""
+"Toepassingspictogrammen tonen de recent geopende bestanden die kunnen worden "
+"geopend. Als je er veel hebt, dan wordt een submenu aanbevolen."
+
+#: quicklists@maestroschan.fr/prefs.js:202
+msgid "About"
+msgstr "Over"
+
+#: quicklists@maestroschan.fr/prefs.js:233
+msgid "Report bugs or ideas"
+msgstr "Bugs melden of ideeën delen"
