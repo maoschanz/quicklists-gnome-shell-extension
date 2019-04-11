@@ -85,7 +85,7 @@ function injectionInAppsMenus() {
 		switch (id) {
 
 			case 'org.gnome.Nautilus.desktop':
-			case 'nemo.desktop': //FIXME s'affiche sur l'icône mais ne s'ouvre pas
+//			case 'nemo.desktop': //FIXME s'affiche sur l'icône mais ne s'ouvre pas
 				let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
 				let [result, contents] = file.load_contents(null); //TODO l'autre emplacement pour le fichier ?
 				if (!result) {
@@ -147,7 +147,7 @@ function injectionInAppsMenus() {
 						this.addMenuItem(bookmarks[j][0]);
 					}
 					bookmarks[j][0].connect('activate', () => {
-						Util.trySpawnCommandLine(bookmarks[j][1]); //FIXME
+						Util.trySpawnCommandLine(bookmarks[j][1]);
 					});
 				}
 			break;

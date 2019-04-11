@@ -5,13 +5,10 @@
   "settings-schema": "org.gnome.shell.extensions.quicklists",
   "name": "Quicklists", 
   "shell-version": [
-    "3.18",
-    "3.20",
-    "3.22",
-    "3.24",
     "3.26",
     "3.28",
-    "3.30"
+    "3.30",
+    "3.32"
   ],
   "url": "https://github.com/maoschanz/quicklists-gnome-shell-extension", 
   "uuid": "quicklists@maestroschan.fr",
