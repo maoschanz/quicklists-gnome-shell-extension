@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-11 09:01+0200\n"
+"PO-Revision-Date: 2019-05-02 23:30+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
+"Language: pl\n"
+
+#: quicklists@maestroschan.fr/extension.js:101
+#: quicklists@maestroschan.fr/extension.js:172
+#: quicklists@maestroschan.fr/prefs.js:110
+msgid "Recent files"
+msgstr "Niedawno odwiedzone"
+
+#: quicklists@maestroschan.fr/extension.js:108
+msgid "Trash"
+msgstr "Kosz"
+
+#: quicklists@maestroschan.fr/extension.js:115
+msgid "Other places"
+msgstr "Inne miejsca"
+
+#: quicklists@maestroschan.fr/extension.js:125
+#: quicklists@maestroschan.fr/prefs.js:109
+msgid "Bookmarks"
+msgstr "Zakładki"
+
+#: quicklists@maestroschan.fr/extension.js:157
+msgid "Manage extensions"
+msgstr "Zarządzaj rozszerzeniami"
+
+#: quicklists@maestroschan.fr/prefs.js:108
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: quicklists@maestroschan.fr/prefs.js:115
+msgid "Display bookmarks in a submenu:"
+msgstr "Wyświetlaj zakładki w pod-menu:"
+
+#: quicklists@maestroschan.fr/prefs.js:132
+msgid ""
+"Nautilus and Nemo icons will display your bookmarks. If you have many, a "
+"submenu is recommended."
+msgstr ""
+"Ikony Nautilusa i Nemo będą wyświetlać twoje zakładki. Jeśli masz ich wiele, "
+"zalecane jest użycie pod-menu."
+
+#: quicklists@maestroschan.fr/prefs.js:143
+msgid "Number of recent files in a menu:"
+msgstr "Liczba niedawno odwiedzonych plików w menu:"
+
+#: quicklists@maestroschan.fr/prefs.js:163
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js:171
+msgid "Display recent files in a submenu:"
+msgstr "Wyświetlaj niedawno odwiedzone pliki w pod-menu:"
+
+#: quicklists@maestroschan.fr/prefs.js:188
+msgid ""
+"Applications' icons will display recently opened files they can open. If you "
+"want many, a submenu is recommended."
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js:204
+msgid "About"
+msgstr "O Quicklists"
+
+#: quicklists@maestroschan.fr/prefs.js:236
+msgid "Report bugs or ideas"
+msgstr "Zgłoś błędy lub pomysły"
