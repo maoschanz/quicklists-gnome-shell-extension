@@ -7,7 +7,7 @@ A [GNOME Shell extension](https://extensions.gnome.org/about/) which adds dynami
 
 **Warning:** this is not compatible with *Dash-To-Dock* or *Ubuntu-Dock* thumbnail previews. (It works with *Dash to panel*.)
 
-Available in french and english.
+Available in Dutch, French, Polish and English.
 
 ## Recommenced installation
 
