@@ -169,7 +169,11 @@ function injectionInAppsMenus() {
 				let app_types = this._source.app.get_app_info().get_supported_types()
 				if (app_types == null) { return; }
 				if (SETTINGS.get_boolean('use-submenu-recent')) {
-					this.recentMenu = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
+					recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
+					this.addMenuItem(recentMenuItem);
+					this.recentMenu = recentMenuItem.menu;
+				} else {
+					this.recentMenu = new PopupMenu.PopupMenuSection();
 					this.addMenuItem(this.recentMenu);
 				}
 				let nbItems = 0;
@@ -181,11 +185,7 @@ function injectionInAppsMenus() {
 					} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
 						let label = recentItems[i].get_display_name();
 						let recent_item = new PopupMenu.PopupMenuItem(label);
-						if (SETTINGS.get_boolean('use-submenu-recent')) {
-							this.recentMenu.menu.addMenuItem(recent_item);
-						} else {
-							this.addMenuItem(recent_item);
-						}
+						this.recentMenu.addMenuItem(recent_item);
 						let recentURI = recentItems[i].get_uri();
 						recent_item.connect('activate', function () {
 							appinfo.launch_uris(
