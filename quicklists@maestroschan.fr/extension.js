@@ -57,7 +57,7 @@ function removeInjection(object, injection, name) {
 
 let injections = [];
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 function getButton(icon_name, accessible_name) {
 	let newButton = new St.Button({
@@ -132,19 +132,21 @@ function injectionInAppsMenus() {
 		}
 		let content = stringFromArray(contents);
 		
-		let buttons_item = new PopupMenu.PopupBaseMenuItem({
-			reactive: false,
-			can_focus: false
-		});
-		
-		this.addBookmarkButton(buttons_item, commandName+' recent:///', 'document-open-recent-symbolic', _("Recent files"));
-		this.addBookmarkButton(buttons_item, commandName+' trash:///', 'user-trash-symbolic', _("Trash"));
 		if (commandName == 'nautilus') {
+			let buttons_item = new PopupMenu.PopupBaseMenuItem({
+				reactive: false,
+				can_focus: false
+			});
+			this.addBookmarkButton(buttons_item, commandName+' recent:///', 'document-open-recent-symbolic', _("Recent files"));
+			this.addBookmarkButton(buttons_item, commandName+' trash:///', 'user-trash-symbolic', _("Trash"));
 			this.addBookmarkButton(buttons_item, commandName+' starred:///', 'starred-symbolic', _("Favorites"));
+			this.addBookmarkButton(buttons_item, commandName+' other-locations:///', 'list-add-symbolic', _("Other places"));
+			this.addMenuItem(buttons_item);
+		} else {
+			this.addAction(_("Recent files"), () => {
+				Util.trySpawnCommandLine(commandName+' recent:///');
+			}, 'document-open-recent-symbolic');
 		}
-		this.addBookmarkButton(buttons_item, commandName+' other-locations:///', 'list-add-symbolic', _("Other places"));
-		
-		this.addMenuItem(buttons_item);
 		
 		if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
 			this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
@@ -192,8 +194,7 @@ function injectionInAppsMenus() {
 			break;
 			case 'gnome-tweak-tool.desktop':
 			case 'org.gnome.tweaks.desktop':
-				let exts = this._appendMenuItem(_("Manage extensions"));
-				exts.connect('activate', () => {
+				this.addAction(_("Manage extensions"), () => {
 					Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 				});
 			break;
@@ -218,6 +219,9 @@ function enable() {
 
 function disable() {
 	removeInjection(AppDisplay.AppIconMenu.prototype, injections, '_redisplay');
+	AppDisplay.AppIconMenu.prototype.loadRecentFiles = null;
+	AppDisplay.AppIconMenu.prototype.addBookmarkButton = null;
+	AppDisplay.AppIconMenu.prototype.loadBookmarks = null;
 }
 
 //-------------------------------------------------

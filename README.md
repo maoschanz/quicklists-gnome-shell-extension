@@ -2,7 +2,7 @@
 
 A [GNOME Shell extension](https://extensions.gnome.org/about/) which adds dynamic quicklists to app icons' menu:
 
-- file manager bookmarks (for Nautilus) ([screenshot](https://i.imgur.com/dpXxtOS.jpg))
+- file manager bookmarks (for Nautilus or Nemo) ([screenshot](https://i.imgur.com/dpXxtOS.jpg))
 - recent files openable by the application ([screenshot](https://i.imgur.com/UPSssDJ.jpg))
 
 **Warning:** this is not compatible with *Dash-To-Dock* or *Ubuntu-Dock* thumbnail previews. (It works with *Dash to panel*.)

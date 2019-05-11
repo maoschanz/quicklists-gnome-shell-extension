@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 09:01+0200\n"
+"POT-Creation-Date: 2019-05-11 03:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,72 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: quicklists@maestroschan.fr/extension.js:101
-#: quicklists@maestroschan.fr/extension.js:172
-#: quicklists@maestroschan.fr/prefs.js:110
+#: quicklists@maestroschan.fr/extension.js:87
+#: quicklists@maestroschan.fr/extension.js:140
+#: quicklists@maestroschan.fr/extension.js:146
+#: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:108
+#: quicklists@maestroschan.fr/extension.js:141
 msgid "Trash"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:115
+#: quicklists@maestroschan.fr/extension.js:142
+msgid "Favorites"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:143
 msgid "Other places"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:125
-#: quicklists@maestroschan.fr/prefs.js:109
+#: quicklists@maestroschan.fr/extension.js:152
+#: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:157
+#: quicklists@maestroschan.fr/extension.js:197
 msgid "Manage extensions"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:108
-msgid "Settings"
-msgstr ""
-
-#: quicklists@maestroschan.fr/prefs.js:115
+#: quicklists@maestroschan.fr/prefs.js:45
 msgid "Display bookmarks in a submenu:"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:132
+#: quicklists@maestroschan.fr/prefs.js:46
 msgid ""
 "Nautilus and Nemo icons will display your bookmarks. If you have many, a "
 "submenu is recommended."
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:143
+#: quicklists@maestroschan.fr/prefs.js:64
 msgid "Number of recent files in a menu:"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:163
+#: quicklists@maestroschan.fr/prefs.js:65
 msgid ""
 "The maximum number of recent files which will be displayed in the menu of an "
 "application's icon."
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:171
+#: quicklists@maestroschan.fr/prefs.js:69
 msgid "Display recent files in a submenu:"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:188
+#: quicklists@maestroschan.fr/prefs.js:70
 msgid ""
 "Applications' icons will display recently opened files they can open. If you "
 "want many, a submenu is recommended."
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:204
+#: quicklists@maestroschan.fr/prefs.js:74
 msgid "About"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:236
+#: quicklists@maestroschan.fr/prefs.js:77
 msgid "Report bugs or ideas"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js:89
+msgid "Author:"
 msgstr ""
