@@ -75,83 +75,121 @@ function getButton(icon_name, accessible_name) {
 	return newButton;
 }
 
-/* this function injects items in AppIconMenu's _redisplay method. */
 function injectionInAppsMenus() {
+	AppDisplay.AppIconMenu.prototype.loadRecentFiles = function () {
+		if (0 == SETTINGS.get_int('max-recents')) { return; }
+		let recentItems = RECENT_MANAGER.get_items();
+		let appinfo = this._source.app.get_app_info();
+		if (appinfo == null || !appinfo.supports_uris()) { return; }
+		let app_types = this._source.app.get_app_info().get_supported_types()
+		if (app_types == null) { return; }
+		if (SETTINGS.get_boolean('use-submenu-recent')) {
+			let recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
+			this.addMenuItem(recentMenuItem);
+			this.recentMenu = recentMenuItem.menu;
+		} else {
+			this.recentMenu = new PopupMenu.PopupMenuSection();
+			this.addMenuItem(this.recentMenu);
+		}
+		let nbItems = 0;
+		for (let i=0; i<recentItems.length; i++) {
+			if ( !recentItems[i].exists() ) {
+				// rien
+			} else if (nbItems >= SETTINGS.get_int('max-recents')) {
+				break;
+			} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
+				let label = recentItems[i].get_display_name();
+				let recent_item = new PopupMenu.PopupMenuItem(label);
+				this.recentMenu.addMenuItem(recent_item);
+				let recentURI = recentItems[i].get_uri();
+				recent_item.connect('activate', function () {
+					appinfo.launch_uris(
+						[recentURI],
+						global.create_app_launch_context(0, -1)
+					);
+				});
+				nbItems++;
+			}
+		}
+	};
+	
+	//--------------------------------------------------------------------------
+	
+	AppDisplay.AppIconMenu.prototype.addBookmarkButton = function (item, command, icon, accessibleName) {
+		let newButton = getButton(icon, accessibleName);
+		newButton.connect('clicked', () => {
+			Util.trySpawnCommandLine(command);
+			this.close();
+		});
+		item.actor.add(newButton, { expand: true, x_fill: false });
+	};
+	
+	AppDisplay.AppIconMenu.prototype.loadBookmarks = function (commandName) {
+		let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
+		let [result, contents] = file.load_contents(null); //TODO l'autre emplacement pour le fichier ?
+		if (!result) {
+			log('ERROR: Could not read bookmarks file');
+		}
+		let content = stringFromArray(contents);
+		
+		let buttons_item = new PopupMenu.PopupBaseMenuItem({
+			reactive: false,
+			can_focus: false
+		});
+		
+		this.addBookmarkButton(buttons_item, commandName+' recent:///', 'document-open-recent-symbolic', _("Recent files"));
+		this.addBookmarkButton(buttons_item, commandName+' trash:///', 'user-trash-symbolic', _("Trash"));
+		if (commandName == 'nautilus') {
+			this.addBookmarkButton(buttons_item, commandName+' starred:///', 'starred-symbolic', _("Favorites"));
+		}
+		this.addBookmarkButton(buttons_item, commandName+' other-locations:///', 'list-add-symbolic', _("Other places"));
+		
+		this.addMenuItem(buttons_item);
+		
+		if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
+			this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
+			this.addMenuItem(this.bookmarksMenu);
+		}
+		
+		let bookmarks = [];
+		for(var i=0; i<content.split('\n').length-1; i++) {
+			let text = '';
+			for(var j=1; j<content.split('\n')[i].split(' ').length; j++) {
+				text += content.split('\n')[i].split(' ')[j] + ' ';
+			}
+			if (text == '') {
+				text = content.split('\n')[i].split('/').pop();
+			}
+			bookmarks.push([
+				new PopupMenu.PopupMenuItem( text ),
+				'nautilus ' + content.split('\n')[i].split(' ')[0]
+			]);
+		}
+		for(let j=0; j<content.split('\n').length-1; j++) {
+			if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
+				this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]);
+			} else {
+				this.addMenuItem(bookmarks[j][0]);
+			}
+			bookmarks[j][0].connect('activate', () => {
+				Util.trySpawnCommandLine(bookmarks[j][1]);
+			});
+		}
+	};
+	
+	//--------------------------------------------------------------------------
+	
+	// This injects items in AppIconMenu's _redisplay method, using the methods
+	// previously defined.
 	injections['_redisplay'] = injectToFunction(AppDisplay.AppIconMenu.prototype, '_redisplay', function() {
 		this._appendSeparator();
-		let id = this._source.app.get_id();
-		let menuItems = [];
-
-		switch (id) {
-
+		switch (this._source.app.get_id()) {
 			case 'org.gnome.Nautilus.desktop':
-//			case 'nemo.desktop': //FIXME s'affiche sur l'icône mais ne s'ouvre pas
-				let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
-				let [result, contents] = file.load_contents(null); //TODO l'autre emplacement pour le fichier ?
-				if (!result) {
-					log('Could not read bookmarks file');
-				}
-				let content = stringFromArray(contents);
-				
-				let buttons_item = new PopupMenu.PopupBaseMenuItem({
-					reactive: false,
-					can_focus: false
-				});
-				
-				let newButton0 = getButton('document-open-recent-symbolic', _("Recent files"));
-				newButton0.connect('clicked', () => {
-					Util.trySpawnCommandLine('nautilus recent:///');
-					this.close();
-				});
-				buttons_item.actor.add(newButton0, { expand: true, x_fill: false });
-				
-				let newButton1 = getButton('user-trash-symbolic', _("Trash"));
-				newButton1.connect('clicked', () => {
-					Util.trySpawnCommandLine('nautilus trash:///');
-					this.close();
-				});
-				buttons_item.actor.add(newButton1, { expand: true, x_fill: false });
-				
-				let newButton2 = getButton('list-add-symbolic', _("Other places"));
-				newButton2.connect('clicked', () => {
-					Util.trySpawnCommandLine('nautilus other-locations:///');
-					this.close();
-				});
-				buttons_item.actor.add(newButton2, { expand: true, x_fill: false });
-				
-				this.addMenuItem(buttons_item);
-				
-				if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
-					this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
-					this.addMenuItem(this.bookmarksMenu);
-				}
-				
-				let bookmarks = [];
-				for(var i = 0; i < content.split('\n').length-1; i++) {
-					let text = '';
-					for(var j=1; j<content.split('\n')[i].split(' ').length; j++) {
-						text += content.split('\n')[i].split(' ')[j] + ' ';
-					}
-					if (text == '') {
-						text = content.split('\n')[i].split('/').pop();
-					}
-					bookmarks.push([
-						new PopupMenu.PopupMenuItem( text ),
-						'nautilus ' + content.split('\n')[i].split(' ')[0]
-					]);
-				}
-				for(let j=0; j<content.split('\n').length-1; j++) {
-					if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
-						this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]);
-					} else {
-						this.addMenuItem(bookmarks[j][0]);
-					}
-					bookmarks[j][0].connect('activate', () => {
-						Util.trySpawnCommandLine(bookmarks[j][1]);
-					});
-				}
+				this.loadBookmarks('nautilus');
 			break;
-
+			case 'nemo.desktop':
+				this.loadBookmarks('nemo');
+			break;
 			case 'gnome-tweak-tool.desktop':
 			case 'org.gnome.tweaks.desktop':
 				let exts = this._appendMenuItem(_("Manage extensions"));
@@ -159,45 +197,9 @@ function injectionInAppsMenus() {
 					Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 				});
 			break;
-
 			default:
-				if (0 == SETTINGS.get_int('max-recents')) { return; }
-				let recentItems = RECENT_MANAGER.get_items();
-				i = 0;
-				let appinfo = this._source.app.get_app_info();
-				if (appinfo == null || !appinfo.supports_uris()) { return; }
-				let app_types = this._source.app.get_app_info().get_supported_types()
-				if (app_types == null) { return; }
-				if (SETTINGS.get_boolean('use-submenu-recent')) {
-					recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
-					this.addMenuItem(recentMenuItem);
-					this.recentMenu = recentMenuItem.menu;
-				} else {
-					this.recentMenu = new PopupMenu.PopupMenuSection();
-					this.addMenuItem(this.recentMenu);
-				}
-				let nbItems = 0;
-				for (i=0; i<recentItems.length; i++) {
-					if ( !recentItems[i].exists() ) {
-						// rien
-					} else if (nbItems >= SETTINGS.get_int('max-recents')) {
-						break;
-					} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
-						let label = recentItems[i].get_display_name();
-						let recent_item = new PopupMenu.PopupMenuItem(label);
-						this.recentMenu.addMenuItem(recent_item);
-						let recentURI = recentItems[i].get_uri();
-						recent_item.connect('activate', function () {
-							appinfo.launch_uris(
-								[recentURI],
-								global.create_app_launch_context(0, -1)
-							);
-						});
-						nbItems++;
-					}
-				}
+				this.loadRecentFiles();
 			break;
-
 		}
 	});
 }
