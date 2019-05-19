@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-11 03:11+0200\n"
-"PO-Revision-Date: 2019-05-02 23:45+0200\n"
+"PO-Revision-Date: 2019-05-19 16:26+0200\n"
 "Last-Translator: Alex (https://gitlab.com/alex4401)\n"
 "Language-Team: Polish (https://gitlab.com/alex4401)\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: quicklists@maestroschan.fr/extension.js:146
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
-msgstr "Niedawno odwiedzone"
+msgstr "Ostatnio odwiedzane"
 
 #: quicklists@maestroschan.fr/extension.js:141
 msgid "Trash"
@@ -32,7 +32,7 @@ msgstr "Kosz"
 
 #: quicklists@maestroschan.fr/extension.js:142
 msgid "Favorites"
-msgstr ""
+msgstr "Ulubione"
 
 #: quicklists@maestroschan.fr/extension.js:143
 msgid "Other places"
@@ -93,7 +93,7 @@ msgstr "Zgłoś błędy lub pomysły"
 
 #: quicklists@maestroschan.fr/prefs.js:89
 msgid "Author:"
-msgstr ""
+msgstr "Autor:"
 
 #~ msgid "Settings"
 #~ msgstr "Ustawienia"
