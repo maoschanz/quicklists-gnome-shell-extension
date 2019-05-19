@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-11 03:11+0200\n"
-"PO-Revision-Date: 2019-05-19 16:25+0200\n"
+"PO-Revision-Date: 2019-05-19 16:26+0200\n"
 "Last-Translator: Alex (https://gitlab.com/alex4401)\n"
 "Language-Team: Polish (https://gitlab.com/alex4401)\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: quicklists@maestroschan.fr/extension.js:146
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
-msgstr "Niedawno odwiedzone"
+msgstr "Ostatnio odwiedzane"
 
 #: quicklists@maestroschan.fr/extension.js:141
 msgid "Trash"
