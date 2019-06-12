@@ -145,9 +145,13 @@ function injectionInAppsMenus() {
 				this.addBookmarkButton(buttons_item, commandName + ' starred:///',
 					                        'starred-symbolic', _("Favorites"));
 				this.addBookmarkButton(buttons_item, commandName + ' other-locations:///',
-					                    'list-add-symbolic', _("Other places"));
+					                    'computer-symbolic', _("Other places"));
 				this.addMenuItem(buttons_item);
 			break;
+			case 'caja':
+				this.addAction(_("Computer"), () => {
+					Util.trySpawnCommandLine(commandName + ' computer:///');
+				}, 'computer-symbolic');
 			case 'thunar':
 				this.addAction(_("Home"), () => {
 					Util.trySpawnCommandLine(commandName);
@@ -213,6 +217,10 @@ function injectionInAppsMenus() {
 			break;
 			case 'Thunar.desktop':
 				this.loadBookmarks('thunar');
+			break;
+			case 'caja.desktop':
+			case 'caja-browser.desktop':
+				this.loadBookmarks('caja');
 			break;
 			case 'nemo.desktop':
 				this.loadBookmarks('nemo');

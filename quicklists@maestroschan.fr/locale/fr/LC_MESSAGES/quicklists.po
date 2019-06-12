@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-12 19:48+0200\n"
+"POT-Creation-Date: 2019-06-12 20:08+0200\n"
 "PO-Revision-Date: 2017-02-05 16:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,14 +15,14 @@ msgstr ""
 
 #: quicklists@maestroschan.fr/extension.js:87
 #: quicklists@maestroschan.fr/extension.js:142
-#: quicklists@maestroschan.fr/extension.js:155
-#: quicklists@maestroschan.fr/extension.js:167
+#: quicklists@maestroschan.fr/extension.js:159
+#: quicklists@maestroschan.fr/extension.js:171
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr "Fichiers récents"
 
 #: quicklists@maestroschan.fr/extension.js:144
-#: quicklists@maestroschan.fr/extension.js:161
+#: quicklists@maestroschan.fr/extension.js:165
 msgid "Trash"
 msgstr "Corbeille"
 
@@ -35,19 +35,23 @@ msgid "Other places"
 msgstr "Autres emplacements"
 
 #: quicklists@maestroschan.fr/extension.js:152
+msgid "Computer"
+msgstr "Ordinateur"
+
+#: quicklists@maestroschan.fr/extension.js:156
 msgid "Home"
 msgstr "Dossier personnel"
 
-#: quicklists@maestroschan.fr/extension.js:158
+#: quicklists@maestroschan.fr/extension.js:162
 msgid "Network"
 msgstr "Réseau"
 
-#: quicklists@maestroschan.fr/extension.js:189
+#: quicklists@maestroschan.fr/extension.js:193
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: quicklists@maestroschan.fr/extension.js:222
+#: quicklists@maestroschan.fr/extension.js:230
 msgid "Manage extensions"
 msgstr "Gérer les extensions"
 
