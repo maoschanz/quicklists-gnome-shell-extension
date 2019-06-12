@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-11 03:11+0200\n"
+"POT-Creation-Date: 2019-06-12 19:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: quicklists@maestroschan.fr/extension.js:87
-#: quicklists@maestroschan.fr/extension.js:140
-#: quicklists@maestroschan.fr/extension.js:146
+#: quicklists@maestroschan.fr/extension.js:142
+#: quicklists@maestroschan.fr/extension.js:155
+#: quicklists@maestroschan.fr/extension.js:167
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:141
+#: quicklists@maestroschan.fr/extension.js:144
+#: quicklists@maestroschan.fr/extension.js:161
 msgid "Trash"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:142
+#: quicklists@maestroschan.fr/extension.js:146
 msgid "Favorites"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:143
+#: quicklists@maestroschan.fr/extension.js:148
 msgid "Other places"
 msgstr ""
 
 #: quicklists@maestroschan.fr/extension.js:152
+msgid "Home"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:158
+msgid "Network"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:189
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:197
+#: quicklists@maestroschan.fr/extension.js:222
 msgid "Manage extensions"
 msgstr ""
 

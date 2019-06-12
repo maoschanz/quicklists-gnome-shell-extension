@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-11 03:11+0200\n"
+"POT-Creation-Date: 2019-06-12 19:48+0200\n"
 "PO-Revision-Date: 2017-02-05 16:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,30 +14,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: quicklists@maestroschan.fr/extension.js:87
-#: quicklists@maestroschan.fr/extension.js:140
-#: quicklists@maestroschan.fr/extension.js:146
+#: quicklists@maestroschan.fr/extension.js:142
+#: quicklists@maestroschan.fr/extension.js:155
+#: quicklists@maestroschan.fr/extension.js:167
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr "Fichiers récents"
 
-#: quicklists@maestroschan.fr/extension.js:141
+#: quicklists@maestroschan.fr/extension.js:144
+#: quicklists@maestroschan.fr/extension.js:161
 msgid "Trash"
 msgstr "Corbeille"
 
-#: quicklists@maestroschan.fr/extension.js:142
+#: quicklists@maestroschan.fr/extension.js:146
 msgid "Favorites"
 msgstr "Favoris"
 
-#: quicklists@maestroschan.fr/extension.js:143
+#: quicklists@maestroschan.fr/extension.js:148
 msgid "Other places"
 msgstr "Autres emplacements"
 
 #: quicklists@maestroschan.fr/extension.js:152
+msgid "Home"
+msgstr "Dossier personnel"
+
+#: quicklists@maestroschan.fr/extension.js:158
+msgid "Network"
+msgstr "Réseau"
+
+#: quicklists@maestroschan.fr/extension.js:189
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: quicklists@maestroschan.fr/extension.js:197
+#: quicklists@maestroschan.fr/extension.js:222
 msgid "Manage extensions"
 msgstr "Gérer les extensions"
 
@@ -88,10 +98,3 @@ msgstr "Rapporter des bugs ou des idées"
 #: quicklists@maestroschan.fr/prefs.js:89
 msgid "Author:"
 msgstr "Auteur :"
-
-#~ msgid ""
-#~ "Add dynamic quicklists to app icons, with Nautilus bookmarks and recent "
-#~ "files."
-#~ msgstr ""
-#~ "Ajoute les listes d'accès rapide aux icones des applications, avec les "
-#~ "signets Nautilus et les fichiers récents."

@@ -94,7 +94,7 @@ function injectionInAppsMenus() {
 		let nbItems = 0;
 		for (let i=0; i<recentItems.length; i++) {
 			if ( !recentItems[i].exists() ) {
-				// rien
+				// do nothing
 			} else if (nbItems >= SETTINGS.get_int('max-recents')) {
 				break;
 			} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
@@ -132,29 +132,47 @@ function injectionInAppsMenus() {
 		}
 		let content = stringFromArray(contents);
 		
-		if (commandName == 'nautilus') {
-			let buttons_item = new PopupMenu.PopupBaseMenuItem({
-				reactive: false,
-				can_focus: false
-			});
-			this.addBookmarkButton(buttons_item, commandName+' recent:///', 'document-open-recent-symbolic', _("Recent files"));
-			this.addBookmarkButton(buttons_item, commandName+' trash:///', 'user-trash-symbolic', _("Trash"));
-			this.addBookmarkButton(buttons_item, commandName+' starred:///', 'starred-symbolic', _("Favorites"));
-			this.addBookmarkButton(buttons_item, commandName+' other-locations:///', 'list-add-symbolic', _("Other places"));
-			this.addMenuItem(buttons_item);
-		} else {
-			this.addAction(_("Recent files"), () => {
-				Util.trySpawnCommandLine(commandName+' recent:///');
-			}, 'document-open-recent-symbolic');
-		}
-		
-		if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
-			this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
-			this.addMenuItem(this.bookmarksMenu);
+		switch (commandName) {
+			case 'nautilus':
+				let buttons_item = new PopupMenu.PopupBaseMenuItem({
+					reactive: false,
+					can_focus: false
+				});
+				this.addBookmarkButton(buttons_item, commandName + ' recent:///',
+					        'document-open-recent-symbolic', _("Recent files"));
+				this.addBookmarkButton(buttons_item, commandName + ' trash:///',
+					                         'user-trash-symbolic', _("Trash"));
+				this.addBookmarkButton(buttons_item, commandName + ' starred:///',
+					                        'starred-symbolic', _("Favorites"));
+				this.addBookmarkButton(buttons_item, commandName + ' other-locations:///',
+					                    'list-add-symbolic', _("Other places"));
+				this.addMenuItem(buttons_item);
+			break;
+			case 'thunar':
+				this.addAction(_("Home"), () => {
+					Util.trySpawnCommandLine(commandName);
+				}, 'user-home-symbolic');
+				this.addAction(_("Recent files"), () => {
+					Util.trySpawnCommandLine(commandName + ' recent:///');
+				}, 'document-open-recent-symbolic');
+				this.addAction(_("Network"), () => {
+					Util.trySpawnCommandLine(commandName + ' network:///');
+				}, 'network-workgroup-symbolic');
+				this.addAction(_("Trash"), () => {
+					Util.trySpawnCommandLine(commandName + ' trash:///');
+				}, 'user-trash-symbolic');
+			break;
+			default: // case 'nemo':
+				// nemo already has quicklist actions
+				this.addAction(_("Recent files"), () => {
+					Util.trySpawnCommandLine(commandName + ' recent:///');
+				}, 'document-open-recent-symbolic');
+			break;
 		}
 		
 		let bookmarks = [];
-		for(var i=0; i<content.split('\n').length-1; i++) {
+		let numberOfBookmarks = content.split('\n').length-1;
+		for(let i = 0; i < numberOfBookmarks; i++) {
 			let text = '';
 			for(var j=1; j<content.split('\n')[i].split(' ').length; j++) {
 				text += content.split('\n')[i].split(' ')[j] + ' ';
@@ -167,7 +185,11 @@ function injectionInAppsMenus() {
 				'nautilus ' + content.split('\n')[i].split(' ')[0]
 			]);
 		}
-		for(let j=0; j<content.split('\n').length-1; j++) {
+		if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
+			this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
+			this.addMenuItem(this.bookmarksMenu);
+		}
+		for(let j = 0; j < numberOfBookmarks; j++) {
 			if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
 				this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]);
 			} else {
@@ -188,6 +210,9 @@ function injectionInAppsMenus() {
 		switch (this._source.app.get_id()) {
 			case 'org.gnome.Nautilus.desktop':
 				this.loadBookmarks('nautilus');
+			break;
+			case 'Thunar.desktop':
+				this.loadBookmarks('thunar');
 			break;
 			case 'nemo.desktop':
 				this.loadBookmarks('nemo');
