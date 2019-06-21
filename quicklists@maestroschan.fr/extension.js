@@ -89,6 +89,7 @@ function injectionInAppsMenus() {
 			this.recentMenu = recentMenuItem.menu;
 		} else {
 			this.recentMenu = new PopupMenu.PopupMenuSection();
+			this.recentMenu.actor.label_actor = new St.Label({text: ''}); // XXX ??????
 			this.addMenuItem(this.recentMenu);
 		}
 		let nbItems = 0;
@@ -138,6 +139,7 @@ function injectionInAppsMenus() {
 					reactive: false,
 					can_focus: false
 				});
+				buttons_item.actor.label_actor = new St.Label({text: ''}); // XXX ??????
 				this.addBookmarkButton(buttons_item, commandName + ' recent:///',
 					        'document-open-recent-symbolic', _("Recent files"));
 				this.addBookmarkButton(buttons_item, commandName + ' trash:///',
