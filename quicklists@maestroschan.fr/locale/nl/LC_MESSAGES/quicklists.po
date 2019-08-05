@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-12 20:16+0200\n"
-"PO-Revision-Date: 2019-04-09 12:03+0200\n"
+"PO-Revision-Date: 2019-08-05 13:34+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: quicklists@maestroschan.fr/extension.js:87
@@ -33,7 +33,7 @@ msgstr "Prullenbak"
 
 #: quicklists@maestroschan.fr/extension.js:146
 msgid "Favorites"
-msgstr ""
+msgstr "Favorieten"
 
 #: quicklists@maestroschan.fr/extension.js:148
 msgid "Other places"
@@ -41,15 +41,15 @@ msgstr "Overige locaties"
 
 #: quicklists@maestroschan.fr/extension.js:152
 msgid "Computer"
-msgstr ""
+msgstr "Computer"
 
 #: quicklists@maestroschan.fr/extension.js:156
 msgid "Home"
-msgstr ""
+msgstr "Persoonlijke map"
 
 #: quicklists@maestroschan.fr/extension.js:162
 msgid "Network"
-msgstr ""
+msgstr "Netwerk"
 
 #: quicklists@maestroschan.fr/extension.js:193
 #: quicklists@maestroschan.fr/prefs.js:42
@@ -62,15 +62,15 @@ msgstr "Uitbreidingen beheren"
 
 #: quicklists@maestroschan.fr/prefs.js:45
 msgid "Display bookmarks in a submenu:"
-msgstr "Bladwijzers tonen in submenu:"
+msgstr "Bladwijzers tonen in onderliggend menu:"
 
 #: quicklists@maestroschan.fr/prefs.js:46
 msgid ""
 "Nautilus and Nemo icons will display your bookmarks. If you have many, a "
 "submenu is recommended."
 msgstr ""
-"Nautilus en Nemo tonen je bladwijzers. Als je er veel hebt, dan wordt een "
-"submenu aanbevolen."
+"Nautilus en Nemo tonen je bladwijzers. Als je er veel hebt, dan is het aan "
+"te bevelen een onderliggend menu te gebruiken."
 
 #: quicklists@maestroschan.fr/prefs.js:64
 msgid "Number of recent files in a menu:"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js:69
 msgid "Display recent files in a submenu:"
-msgstr "Recente bestanden tonen in submenu:"
+msgstr "Recente bestanden tonen in onderliggend menu:"
 
 #: quicklists@maestroschan.fr/prefs.js:70
 msgid ""
@@ -94,7 +94,8 @@ msgid ""
 "want many, a submenu is recommended."
 msgstr ""
 "Toepassingspictogrammen tonen de recent geopende bestanden die kunnen worden "
-"geopend. Als je er veel hebt, dan wordt een submenu aanbevolen."
+"geopend. Als je er veel hebt, dan is het aan te bevelen een onderliggend "
+"menu te gebruiken."
 
 #: quicklists@maestroschan.fr/prefs.js:74
 msgid "About"
@@ -102,11 +103,11 @@ msgstr "Over"
 
 #: quicklists@maestroschan.fr/prefs.js:77
 msgid "Report bugs or ideas"
-msgstr "Bugs melden of ideeën delen"
+msgstr "Bugs melden of ideëen aandragen"
 
 #: quicklists@maestroschan.fr/prefs.js:89
 msgid "Author:"
-msgstr ""
+msgstr "Auteur:"
 
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
