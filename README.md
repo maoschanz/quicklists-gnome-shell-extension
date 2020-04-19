@@ -19,7 +19,7 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 ## Manual installation
 
 - Download files
-- Run `./install`. It will move the "`quicklists@maestroschan.fr`" folder into `~/.local/share/gnome-shell/extensions/`
+- Run `./install.sh`, it will move the "`quicklists@maestroschan.fr`" folder into `~/.local/share/gnome-shell/extensions/`
 - You may need to restart the GNOME Shell environment (logout and login back, or Alt + F2, `r`, enter)
 - Then activate it (with GNOME Tweaks, or from GNOME Software, or directly launch `gnome-shell-extension-prefs`)
 

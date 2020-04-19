@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 04:40+0200\n"
+"POT-Creation-Date: 2020-04-19 05:25+0200\n"
 "PO-Revision-Date: 2019-08-05 13:34+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -19,44 +19,58 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: quicklists@maestroschan.fr/extension.js:85
-#: quicklists@maestroschan.fr/extension.js:167
-#: quicklists@maestroschan.fr/extension.js:184
-#: quicklists@maestroschan.fr/extension.js:197
+#: quicklists@maestroschan.fr/extension.js:169
+#: quicklists@maestroschan.fr/extension.js:186
+#: quicklists@maestroschan.fr/extension.js:199
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr "Recente bestanden"
 
-#: quicklists@maestroschan.fr/extension.js:169
-#: quicklists@maestroschan.fr/extension.js:190
+#: quicklists@maestroschan.fr/extension.js:125
+#, fuzzy
+msgid "No recent file for this app"
+msgstr "Aantal recente bestanden in menu:"
+
+#: quicklists@maestroschan.fr/extension.js:171
+#: quicklists@maestroschan.fr/extension.js:192
 msgid "Trash"
 msgstr "Prullenbak"
 
-#: quicklists@maestroschan.fr/extension.js:171
+#: quicklists@maestroschan.fr/extension.js:173
 msgid "Favorites"
 msgstr "Favorieten"
 
-#: quicklists@maestroschan.fr/extension.js:173
+#: quicklists@maestroschan.fr/extension.js:175
 msgid "Other places"
 msgstr "Overige locaties"
 
-#: quicklists@maestroschan.fr/extension.js:177
+#: quicklists@maestroschan.fr/extension.js:179
 msgid "Computer"
 msgstr "Computer"
 
-#: quicklists@maestroschan.fr/extension.js:181
+#: quicklists@maestroschan.fr/extension.js:183
 msgid "Home"
 msgstr "Persoonlijke map"
 
-#: quicklists@maestroschan.fr/extension.js:187
+#: quicklists@maestroschan.fr/extension.js:189
 msgid "Network"
 msgstr "Netwerk"
 
-#: quicklists@maestroschan.fr/extension.js:219
+#: quicklists@maestroschan.fr/extension.js:213
+#, fuzzy
+msgid "No bookmark"
+msgstr "Bladwijzers"
+
+#: quicklists@maestroschan.fr/extension.js:218
+msgid "Error: could not read bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:250
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
-#: quicklists@maestroschan.fr/extension.js:260
+#: quicklists@maestroschan.fr/extension.js:293
 msgid "Manage extensions"
 msgstr "Uitbreidingen beheren"
 

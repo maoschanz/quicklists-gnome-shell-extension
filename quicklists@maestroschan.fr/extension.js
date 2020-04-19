@@ -118,7 +118,15 @@ function injectionInAppsMenus() {
 				nbItems++;
 			}
 		}
-		// TODO if no compatible file, add a placeholder
+
+		// Placeholder
+		if (0 === nbItems) {
+			let recent_item = new PopupMenu.PopupMenuItem(
+				_("No recent file for this app"),
+				{ reactive: false }
+			);
+			this._recentFilesMenu.addMenuItem(recent_item);
+		}
 	};
 
 	//--------------------------------------------------------------------------
@@ -147,14 +155,8 @@ function injectionInAppsMenus() {
 
 	// Load into the app's icon menu a list of items corresponding to bookmarks.
 	AppDisplay.AppIconMenu.prototype._loadBookmarks = function (commandName) {
-		let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
-		let [result, contents] = file.load_contents(null);
-		// TODO what about the other path possible, directly in the home??
-		if (!result) {
-			log('ERROR: Could not read bookmarks file');
-		}
-		let content = stringFromArray(contents);
-		
+		// These first items are not bookmarks, but have to be available anyway.
+		// They're not exactly the same depending on the file manager.
 		switch (commandName) {
 			case 'nautilus':
 				let buttons_item = new PopupMenu.PopupBaseMenuItem({
@@ -199,26 +201,57 @@ function injectionInAppsMenus() {
 				}, 'document-open-recent-symbolic');
 			break;
 		}
-		
+
+		// Read the file with GTK bookmarks
+		let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
+		let [result, contents] = file.load_contents(null);
+		// TODO what about the other path possible, directly in the home??
+
+		let noBookmarkLabel;
+		let content;
+		if (result) {
+			noBookmarkLabel = _("No bookmark");
+			content = stringFromArray(contents);
+		} else {
+			// TODO it catches Gio.File reading errors, but if the file doesn't
+			// exist the whole thing just crashes before running this
+			noBookmarkLabel = _("Error: could not read bookmarks");
+			content = '';
+		}
+
+		// Build an array of [PopupMenuItem, command-as-string] pairs
 		let bookmarks = [];
-		let numberOfBookmarks = content.split('\n').length-1;
+		let numberOfBookmarks = content.split('\n').length - 1;
 		for(let i = 0; i < numberOfBookmarks; i++) {
 			let text = '';
-			for(var j=1; j<content.split('\n')[i].split(' ').length; j++) {
+			for(var j = 1; j < content.split('\n')[i].split(' ').length; j++) {
 				text += content.split('\n')[i].split(' ')[j] + ' ';
 			}
 			if (text == '') {
 				text = content.split('\n')[i].split('/').pop();
 			}
 			bookmarks.push([
-				new PopupMenu.PopupMenuItem( text ),
-				'nautilus ' + content.split('\n')[i].split(' ')[0]
+				new PopupMenu.PopupMenuItem(text),
+				commandName + ' ' + content.split('\n')[i].split(' ')[0]
 			]);
 		}
+
+		// Placeholder
+		if (0 === numberOfBookmarks) {
+			let placeholderItem = new PopupMenu.PopupMenuItem(
+				noBookmarkLabel,
+				{ reactive: false }
+			);
+			bookmarks.push([placeholderItem, '']);
+			numberOfBookmarks = 1;
+		}
+
 		if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
 			this.bookmarksMenu = new PopupMenu.PopupSubMenuMenuItem(_("Bookmarks"));
 			this.addMenuItem(this.bookmarksMenu);
 		}
+
+		// Add a menu item for each bookmark
 		for(let j = 0; j < numberOfBookmarks; j++) {
 			if (SETTINGS.get_boolean('use-submenu-bookmarks')) {
 				this.bookmarksMenu.menu.addMenuItem(bookmarks[j][0]);

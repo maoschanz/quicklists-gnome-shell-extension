@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 04:40+0200\n"
+"POT-Creation-Date: 2020-04-19 05:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,44 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: quicklists@maestroschan.fr/extension.js:85
-#: quicklists@maestroschan.fr/extension.js:167
-#: quicklists@maestroschan.fr/extension.js:184
-#: quicklists@maestroschan.fr/extension.js:197
+#: quicklists@maestroschan.fr/extension.js:169
+#: quicklists@maestroschan.fr/extension.js:186
+#: quicklists@maestroschan.fr/extension.js:199
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:169
-#: quicklists@maestroschan.fr/extension.js:190
-msgid "Trash"
+#: quicklists@maestroschan.fr/extension.js:125
+msgid "No recent file for this app"
 msgstr ""
 
 #: quicklists@maestroschan.fr/extension.js:171
-msgid "Favorites"
+#: quicklists@maestroschan.fr/extension.js:192
+msgid "Trash"
 msgstr ""
 
 #: quicklists@maestroschan.fr/extension.js:173
+msgid "Favorites"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:175
 msgid "Other places"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:177
+#: quicklists@maestroschan.fr/extension.js:179
 msgid "Computer"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:181
+#: quicklists@maestroschan.fr/extension.js:183
 msgid "Home"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:187
+#: quicklists@maestroschan.fr/extension.js:189
 msgid "Network"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:219
+#: quicklists@maestroschan.fr/extension.js:213
+msgid "No bookmark"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:218
+msgid "Error: could not read bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/extension.js:250
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:260
+#: quicklists@maestroschan.fr/extension.js:293
 msgid "Manage extensions"
 msgstr ""
 
