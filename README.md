@@ -23,3 +23,15 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 - You may need to restart the GNOME Shell environment (logout and login back, or Alt + F2, `r`, enter)
 - Then activate it (with GNOME Tweaks, or from GNOME Software, or directly launch `gnome-shell-extension-prefs`)
 
+<!-- TODO
+
+tests 3.28
+
+des screenshots moins éclatés
+
+release github
+
+release sur le site
+
+    -->
+
