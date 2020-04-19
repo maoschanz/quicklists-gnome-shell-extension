@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="quicklists">
-	<schema id="org.gnome.shell.extensions.quicklists" path="/org/gnome/shell/extensions/quicklists/">
-		<key type="i" name="max-recents">
-			<default>8</default>
-			<summary>Max number of recent file per app</summary>
-			<description>The maximum number of recent files that should be displayed for an app.</description>
-		</key>
-		<key type="b" name="use-submenu-bookmarks">
-			<default>true</default>
-			<summary>Show bookmarks in a submenu</summary>
-			<description>If bookmarks are in a submenu, it allows to scroll the list. "True" is recommended if many bookmarks are displayed.</description>
-		</key>
-		<key type="b" name="use-submenu-recent">
-			<default>false</default>
-			<summary>Show recent files in a submenu</summary>
-			<description>If recent files are in a submenu, it allows to scroll the list. "True" is recommended if many recent files are displayed.</description>
-		</key>
-	</schema>
+  <schema id="org.gnome.shell.extensions.quicklists" path="/org/gnome/shell/extensions/quicklists/">
+
+    <!-- Bookmarks -->
+    <key type="b" name="use-submenu-bookmarks">
+      <default>true</default>
+      <summary>Show bookmarks in a submenu</summary>
+      <description>
+        Putting bookmarks in a submenu allows you to scroll the list, so "True"
+        is recommended if many places are bookmarked.
+      </description>
+    </key>
+
+    <!-- Recent files -->
+    <key type="i" name="max-recents">
+      <default>8</default>
+      <summary>Max number of recent file per app</summary>
+      <description>
+        The maximum number of recent files that should be displayed on the menu
+        for apps who can open files.
+      </description>
+    </key>
+    <key type="b" name="use-submenu-recent">
+      <default>false</default>
+      <summary>Show recent files in a submenu</summary>
+      <description>
+        Putting recent files in a submenu allows you to scroll the list, so
+        "True" is recommended if many recent files are displayed.
+      </description>
+    </key>
+
+  </schema>
 </schemalist>

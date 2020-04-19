@@ -5,6 +5,7 @@ const St = imports.gi.St;
 const Gtk = imports.gi.Gtk;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
+const ShellVersion = imports.misc.config.PACKAGE_VERSION;
 
 const Main = imports.ui.main;
 const AppDisplay = imports.ui.appDisplay;
@@ -17,12 +18,18 @@ const Convenience = Me.imports.convenience;
 const Gettext = imports.gettext.domain('quicklists');
 const _ = Gettext.gettext;
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 
 let SETTINGS;
+var INJECTED_METHOD_NAME;
 
 function init() {
 	Convenience.initTranslations();
+	if (parseInt(ShellVersion.split('.')[1]) > 35) {
+		INJECTED_METHOD_NAME = '_rebuildMenu';
+	} else {
+		INJECTED_METHOD_NAME = '_redisplay';
+	}
 }
 
 function stringFromArray(data){
@@ -33,7 +40,7 @@ function stringFromArray(data){
 	}
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 /* do not edit this section */
 
 function injectToFunction(parent, name, func) {
@@ -59,41 +66,40 @@ let injections = [];
 
 //------------------------------------------------------------------------------
 
-function getButton(icon_name, accessible_name) {
-	let newButton = new St.Button({
-		reactive: true,
-		can_focus: true,
-		track_hover: true,
-		accessible_name: accessible_name,
-		style_class: 'button',
-		style: 'padding-right: 12px; padding-left: 12px;',
-	});
-	newButton.child = new St.Icon({
-		icon_name: icon_name,
-		icon_size: 16,
-	});
-	return newButton;
-}
-
+// Performs the required code injections into AppIconMenu
 function injectionInAppsMenus() {
-	AppDisplay.AppIconMenu.prototype.loadRecentFiles = function () {
-		if (0 == SETTINGS.get_int('max-recents')) { return; }
-		let recentItems = RECENT_MANAGER.get_items();
+
+	// Load into the app's icon menu a list of items corresponding to recently
+	// used files whose types are among the MIME types supported by the app.
+	AppDisplay.AppIconMenu.prototype._loadRecentFiles = function () {
+		// Various guard clauses
+		if (0 === SETTINGS.get_int('max-recents')) { return; }
 		let appinfo = this._source.app.get_app_info();
 		if (appinfo == null || !appinfo.supports_uris()) { return; }
 		let app_types = this._source.app.get_app_info().get_supported_types()
 		if (app_types == null) { return; }
+
+		// Remember as `this._recentFilesMenu` the menu where items shall be
+		// added. XXX this is suboptimal: it's called each time a menu is open!!
 		if (SETTINGS.get_boolean('use-submenu-recent')) {
 			let recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
 			this.addMenuItem(recentMenuItem);
-			this.recentMenu = recentMenuItem.menu;
+			this._recentFilesMenu = recentMenuItem.menu;
 		} else {
-			this.recentMenu = new PopupMenu.PopupMenuSection();
-			this.recentMenu.actor.label_actor = new St.Label({text: ''}); // XXX ??????
-			this.addMenuItem(this.recentMenu);
+			this._recentFilesMenu = new PopupMenu.PopupMenuSection();
+			// XXX ??? no idea why it was here, need tests on 3.28 (on 3.36, it
+			// looks optional but if the text is not an empty string, the
+			// section isn't built at all)
+			this._recentFilesMenu.actor.label_actor = new St.Label({text: ''});
+			this.addMenuItem(this._recentFilesMenu);
 		}
+
+		// Get all recent files
+		let recentItems = RECENT_MANAGER.get_items();
+
+		// Add compatible files to `this._recentFilesMenu`
 		let nbItems = 0;
-		for (let i=0; i<recentItems.length; i++) {
+		for (let i = 0; i < recentItems.length; i++) {
 			if ( !recentItems[i].exists() ) {
 				// do nothing
 			} else if (nbItems >= SETTINGS.get_int('max-recents')) {
@@ -101,7 +107,7 @@ function injectionInAppsMenus() {
 			} else if (app_types.indexOf(recentItems[i].get_mime_type()) != -1) {
 				let label = recentItems[i].get_display_name();
 				let recent_item = new PopupMenu.PopupMenuItem(label);
-				this.recentMenu.addMenuItem(recent_item);
+				this._recentFilesMenu.addMenuItem(recent_item);
 				let recentURI = recentItems[i].get_uri();
 				recent_item.connect('activate', function () {
 					appinfo.launch_uris(
@@ -112,22 +118,38 @@ function injectionInAppsMenus() {
 				nbItems++;
 			}
 		}
+		// TODO if no compatible file, add a placeholder
 	};
-	
+
 	//--------------------------------------------------------------------------
-	
-	AppDisplay.AppIconMenu.prototype.addBookmarkButton = function (item, command, icon, accessibleName) {
-		let newButton = getButton(icon, accessibleName);
+
+	// Utility adding a button with the icon `iconName` to the menuitem `item`.
+	// Clicking on it will run the bash command `command`.
+	AppDisplay.AppIconMenu.prototype._addBookmarkButton = function (item, command, iconName, accessibleName) {
+		let newButton = new St.Button({
+			reactive: true,
+			can_focus: true,
+			track_hover: true,
+			accessible_name: accessibleName,
+			style_class: 'button',
+			style: 'padding-right: 12px; padding-left: 12px;',
+		});
+		newButton.child = new St.Icon({
+			icon_name: iconName,
+			icon_size: 16,
+		});
 		newButton.connect('clicked', () => {
 			Util.trySpawnCommandLine(command);
 			this.close();
 		});
 		item.actor.add(newButton, { expand: true, x_fill: false });
 	};
-	
-	AppDisplay.AppIconMenu.prototype.loadBookmarks = function (commandName) {
+
+	// Load into the app's icon menu a list of items corresponding to bookmarks.
+	AppDisplay.AppIconMenu.prototype._loadBookmarks = function (commandName) {
 		let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
-		let [result, contents] = file.load_contents(null); //TODO l'autre emplacement pour le fichier ?
+		let [result, contents] = file.load_contents(null);
+		// TODO what about the other path possible, directly in the home??
 		if (!result) {
 			log('ERROR: Could not read bookmarks file');
 		}
@@ -139,14 +161,15 @@ function injectionInAppsMenus() {
 					reactive: false,
 					can_focus: false
 				});
-				buttons_item.actor.label_actor = new St.Label({text: ''}); // XXX ??????
-				this.addBookmarkButton(buttons_item, commandName + ' recent:///',
+				// XXX again, wtf is this? this time it's mandatory
+				buttons_item.actor.label_actor = new St.Label({text: ''});
+				this._addBookmarkButton(buttons_item, commandName + ' recent:///',
 					        'document-open-recent-symbolic', _("Recent files"));
-				this.addBookmarkButton(buttons_item, commandName + ' trash:///',
+				this._addBookmarkButton(buttons_item, commandName + ' trash:///',
 					                         'user-trash-symbolic', _("Trash"));
-				this.addBookmarkButton(buttons_item, commandName + ' starred:///',
+				this._addBookmarkButton(buttons_item, commandName + ' starred:///',
 					                        'starred-symbolic', _("Favorites"));
-				this.addBookmarkButton(buttons_item, commandName + ' other-locations:///',
+				this._addBookmarkButton(buttons_item, commandName + ' other-locations:///',
 					                    'computer-symbolic', _("Other places"));
 				this.addMenuItem(buttons_item);
 			break;
@@ -168,8 +191,9 @@ function injectionInAppsMenus() {
 					Util.trySpawnCommandLine(commandName + ' trash:///');
 				}, 'user-trash-symbolic');
 			break;
-			default: // case 'nemo':
-				// nemo already has quicklist actions
+			case 'nemo':
+			default:
+				// nemo already has a few quicklist actions
 				this.addAction(_("Recent files"), () => {
 					Util.trySpawnCommandLine(commandName + ' recent:///');
 				}, 'document-open-recent-symbolic');
@@ -206,41 +230,46 @@ function injectionInAppsMenus() {
 			});
 		}
 	};
-	
+
 	//--------------------------------------------------------------------------
-	
-	// This injects items in AppIconMenu's _redisplay method, using the methods
-	// previously defined.
-	injections['_redisplay'] = injectToFunction(AppDisplay.AppIconMenu.prototype, '_redisplay', function() {
-		this._appendSeparator();
-		switch (this._source.app.get_id()) {
-			case 'org.gnome.Nautilus.desktop':
-				this.loadBookmarks('nautilus');
-			break;
-			case 'Thunar.desktop':
-				this.loadBookmarks('thunar');
-			break;
-			case 'caja.desktop':
-			case 'caja-browser.desktop':
-				this.loadBookmarks('caja');
-			break;
-			case 'nemo.desktop':
-				this.loadBookmarks('nemo');
-			break;
-			case 'gnome-tweak-tool.desktop':
-			case 'org.gnome.tweaks.desktop':
-				this.addAction(_("Manage extensions"), () => {
-					Util.trySpawnCommandLine('gnome-shell-extension-prefs');
-				});
-			break;
-			default:
-				this.loadRecentFiles();
-			break;
+
+	// This injects items in AppIconMenu's INJECTED_METHOD_NAME method (the
+	// value of this variable isn't the same across versions), items being built
+	// using the methods injected above.
+	injections[INJECTED_METHOD_NAME] = injectToFunction(
+		AppDisplay.AppIconMenu.prototype,
+		INJECTED_METHOD_NAME,
+		function() {
+			this._appendSeparator();
+			switch (this._source.app.get_id()) {
+				case 'org.gnome.Nautilus.desktop':
+					this._loadBookmarks('nautilus');
+				break;
+				case 'Thunar.desktop':
+					this._loadBookmarks('thunar');
+				break;
+				case 'caja.desktop':
+				case 'caja-browser.desktop':
+					this._loadBookmarks('caja');
+				break;
+				case 'nemo.desktop':
+					this._loadBookmarks('nemo');
+				break;
+				case 'gnome-tweak-tool.desktop':
+				case 'org.gnome.tweaks.desktop':
+					this.addAction(_("Manage extensions"), () => {
+						Util.trySpawnCommandLine('gnome-shell-extension-prefs');
+					});
+				break;
+				default:
+					this._loadRecentFiles();
+				break;
+			}
 		}
-	});
+	);
 }
 
-//----------------------------------------------------
+//------------------------------------------------------------------------------
 
 let RECENT_MANAGER;
 
@@ -250,14 +279,12 @@ function enable() {
 	injectionInAppsMenus();
 }
 
-//-------------------------------------------------
-
 function disable() {
-	removeInjection(AppDisplay.AppIconMenu.prototype, injections, '_redisplay');
-	AppDisplay.AppIconMenu.prototype.loadRecentFiles = null;
-	AppDisplay.AppIconMenu.prototype.addBookmarkButton = null;
-	AppDisplay.AppIconMenu.prototype.loadBookmarks = null;
+	removeInjection(AppDisplay.AppIconMenu.prototype, injections, INJECTED_METHOD_NAME);
+	AppDisplay.AppIconMenu.prototype._loadRecentFiles = null;
+	AppDisplay.AppIconMenu.prototype._addBookmarkButton = null;
+	AppDisplay.AppIconMenu.prototype._loadBookmarks = null;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 

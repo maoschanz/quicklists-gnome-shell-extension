@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-12 20:16+0200\n"
+"POT-Creation-Date: 2020-04-19 04:40+0200\n"
 "PO-Revision-Date: 2017-02-05 16:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,45 +13,45 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: quicklists@maestroschan.fr/extension.js:87
-#: quicklists@maestroschan.fr/extension.js:142
-#: quicklists@maestroschan.fr/extension.js:159
-#: quicklists@maestroschan.fr/extension.js:171
+#: quicklists@maestroschan.fr/extension.js:85
+#: quicklists@maestroschan.fr/extension.js:167
+#: quicklists@maestroschan.fr/extension.js:184
+#: quicklists@maestroschan.fr/extension.js:197
 #: quicklists@maestroschan.fr/prefs.js:50
 msgid "Recent files"
 msgstr "Fichiers récents"
 
-#: quicklists@maestroschan.fr/extension.js:144
-#: quicklists@maestroschan.fr/extension.js:165
+#: quicklists@maestroschan.fr/extension.js:169
+#: quicklists@maestroschan.fr/extension.js:190
 msgid "Trash"
 msgstr "Corbeille"
 
-#: quicklists@maestroschan.fr/extension.js:146
+#: quicklists@maestroschan.fr/extension.js:171
 msgid "Favorites"
 msgstr "Favoris"
 
-#: quicklists@maestroschan.fr/extension.js:148
+#: quicklists@maestroschan.fr/extension.js:173
 msgid "Other places"
 msgstr "Autres emplacements"
 
-#: quicklists@maestroschan.fr/extension.js:152
+#: quicklists@maestroschan.fr/extension.js:177
 msgid "Computer"
 msgstr "Ordinateur"
 
-#: quicklists@maestroschan.fr/extension.js:156
+#: quicklists@maestroschan.fr/extension.js:181
 msgid "Home"
 msgstr "Dossier personnel"
 
-#: quicklists@maestroschan.fr/extension.js:162
+#: quicklists@maestroschan.fr/extension.js:187
 msgid "Network"
 msgstr "Réseau"
 
-#: quicklists@maestroschan.fr/extension.js:193
+#: quicklists@maestroschan.fr/extension.js:219
 #: quicklists@maestroschan.fr/prefs.js:42
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: quicklists@maestroschan.fr/extension.js:230
+#: quicklists@maestroschan.fr/extension.js:260
 msgid "Manage extensions"
 msgstr "Gérer les extensions"
 
