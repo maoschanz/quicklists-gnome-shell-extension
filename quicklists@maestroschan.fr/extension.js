@@ -6,6 +6,7 @@ const Gtk = imports.gi.Gtk;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const ShellVersion = imports.misc.config.PACKAGE_VERSION;
+const Mainloop = imports.mainloop;
 
 const Main = imports.ui.main;
 const AppDisplay = imports.ui.appDisplay;
@@ -77,15 +78,22 @@ function injectionInAppsMenus() {
 		let appinfo = this._source.app.get_app_info();
 		if (appinfo == null || !appinfo.supports_uris()) { return; }
 		let app_types = this._source.app.get_app_info().get_supported_types()
+		// TODO that's not enough: gedit is still fucking dumb and ignore 99% of
+		// what it should open.
 		if (app_types == null) { return; }
 
 		// Remember as `this._recentFilesMenu` the menu where items shall be
 		// added. XXX this is suboptimal: it's called each time a menu is open!!
 		if (SETTINGS.get_boolean('use-submenu-recent')) {
+			this._appendSeparator();
 			let recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
 			this.addMenuItem(recentMenuItem);
 			this._recentFilesMenu = recentMenuItem.menu;
 		} else {
+			this._appendSeparator();
+			// That labeled separator would be prefered by GS designers, but the
+			// current implementation is really very ugly. So no.
+			// this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem(_("Recent files")));
 			this._recentFilesMenu = new PopupMenu.PopupMenuSection();
 			// XXX ??? no idea why it was here, need tests on 3.28 (on 3.36, it
 			// looks optional but if the text is not an empty string, the
@@ -153,8 +161,12 @@ function injectionInAppsMenus() {
 		item.actor.add(newButton, { expand: true, x_fill: false });
 	};
 
+	//--------------------------------------------------------------------------
+
 	// Load into the app's icon menu a list of items corresponding to bookmarks.
 	AppDisplay.AppIconMenu.prototype._loadBookmarks = function (commandName) {
+		this._appendSeparator();
+
 		// These first items are not bookmarks, but have to be available anyway.
 		// They're not exactly the same depending on the file manager.
 		switch (commandName) {
@@ -166,13 +178,13 @@ function injectionInAppsMenus() {
 				// XXX again, wtf is this? this time it's mandatory
 				buttons_item.actor.label_actor = new St.Label({text: ''});
 				this._addBookmarkButton(buttons_item, commandName + ' recent:///',
-					        'document-open-recent-symbolic', _("Recent files"));
+				            'document-open-recent-symbolic', _("Recent files"));
 				this._addBookmarkButton(buttons_item, commandName + ' trash:///',
-					                         'user-trash-symbolic', _("Trash"));
+				                             'user-trash-symbolic', _("Trash"));
 				this._addBookmarkButton(buttons_item, commandName + ' starred:///',
-					                        'starred-symbolic', _("Favorites"));
+				                            'starred-symbolic', _("Favorites"));
 				this._addBookmarkButton(buttons_item, commandName + ' other-locations:///',
-					                    'computer-symbolic', _("Other places"));
+				                        'computer-symbolic', _("Other places"));
 				this.addMenuItem(buttons_item);
 			break;
 			case 'caja':
@@ -273,31 +285,37 @@ function injectionInAppsMenus() {
 		AppDisplay.AppIconMenu.prototype,
 		INJECTED_METHOD_NAME,
 		function() {
-			this._appendSeparator();
-			switch (this._source.app.get_id()) {
-				case 'org.gnome.Nautilus.desktop':
-					this._loadBookmarks('nautilus');
-				break;
-				case 'Thunar.desktop':
-					this._loadBookmarks('thunar');
-				break;
-				case 'caja.desktop':
-				case 'caja-browser.desktop':
-					this._loadBookmarks('caja');
-				break;
-				case 'nemo.desktop':
-					this._loadBookmarks('nemo');
-				break;
-				case 'gnome-tweak-tool.desktop':
-				case 'org.gnome.tweaks.desktop':
-					this.addAction(_("Manage extensions"), () => {
-						Util.trySpawnCommandLine('gnome-shell-extension-prefs');
-					});
-				break;
-				default:
-					this._loadRecentFiles();
-				break;
-			}
+			// Loading the quicklist items is delayed of 10ms, to ensure that
+			// even if the code of the extension fails, the default menu will be
+			// correctly loaded anyways.
+			let timeoutId = Mainloop.timeout_add(10, () => {
+				switch (this._source.app.get_id()) {
+					case 'org.gnome.Nautilus.desktop':
+						this._loadBookmarks('nautilus');
+					break;
+					case 'Thunar.desktop':
+						this._loadBookmarks('thunar');
+					break;
+					case 'caja.desktop':
+					case 'caja-browser.desktop':
+						this._loadBookmarks('caja');
+					break;
+					case 'nemo.desktop':
+						this._loadBookmarks('nemo');
+					break;
+					case 'gnome-tweak-tool.desktop':
+					case 'org.gnome.tweaks.desktop':
+						this._appendSeparator();
+						this.addAction(_("Manage extensions"), () => {
+							Util.trySpawnCommandLine('gnome-shell-extension-prefs');
+						});
+					break;
+					default:
+						this._loadRecentFiles();
+					break;
+				}
+				Mainloop.source_remove(timeoutId);
+			});
 		}
 	);
 }
