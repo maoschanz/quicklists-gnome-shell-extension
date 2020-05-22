@@ -21,8 +21,11 @@ const _ = Gettext.gettext;
 
 //------------------------------------------------------------------------------
 
+let RECENT_MANAGER;
 let SETTINGS;
-var INJECTED_METHOD_NAME;
+
+let INJECTED_METHOD_NAME;
+let INJECTIONS = [];
 
 function init() {
 	Convenience.initTranslations();
@@ -62,8 +65,6 @@ function removeInjection(object, injection, name) {
 	else
 		object[name] = injection[name];
 }
-
-let injections = [];
 
 //------------------------------------------------------------------------------
 
@@ -215,20 +216,29 @@ function injectionInAppsMenus() {
 		}
 
 		// Read the file with GTK bookmarks
-		let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
-		let [result, contents] = file.load_contents(null);
-		// TODO what about the other path possible, directly in the home??
+		let noBookmarkLabel = "";
+		let content = "";
+		try {
+			let file = Gio.file_new_for_path('.config/gtk-3.0/bookmarks');
+			let [result, contents] = file.load_contents(null);
+			// TODO what about the other path possible, directly in the home??
 
-		let noBookmarkLabel;
-		let content;
-		if (result) {
-			noBookmarkLabel = _("No bookmark");
-			content = stringFromArray(contents);
-		} else {
-			// TODO it catches Gio.File reading errors, but if the file doesn't
-			// exist the whole thing just crashes before running this
-			noBookmarkLabel = _("Error: could not read bookmarks");
-			content = '';
+			if (result) {
+				noBookmarkLabel = _("No bookmark");
+				content = stringFromArray(contents);
+			} else {
+				throw new Exception(_("Error: could not read bookmarks"));
+			}
+		} catch (e) {
+			log(e);
+			linesArray = e.toString().match(/.{1,40}/g); // or e.message?
+			for (var index in linesArray) {
+				if (index == linesArray.length - 1) {
+					noBookmarkLabel += linesArray[index];
+				} else {
+					noBookmarkLabel += linesArray[index] + "\n";
+				}
+			}
 		}
 
 		// Build an array of [PopupMenuItem, command-as-string] pairs
@@ -279,9 +289,8 @@ function injectionInAppsMenus() {
 	//--------------------------------------------------------------------------
 
 	// This injects items in AppIconMenu's INJECTED_METHOD_NAME method (the
-	// value of this variable isn't the same across versions), items being built
-	// using the methods injected above.
-	injections[INJECTED_METHOD_NAME] = injectToFunction(
+	// value of this variable isn't the same depending on GS versions).
+	INJECTIONS[INJECTED_METHOD_NAME] = injectToFunction(
 		AppDisplay.AppIconMenu.prototype,
 		INJECTED_METHOD_NAME,
 		function() {
@@ -322,8 +331,6 @@ function injectionInAppsMenus() {
 
 //------------------------------------------------------------------------------
 
-let RECENT_MANAGER;
-
 function enable() {
 	RECENT_MANAGER = new Gtk.RecentManager();
 	SETTINGS = Convenience.getSettings();
@@ -331,7 +338,7 @@ function enable() {
 }
 
 function disable() {
-	removeInjection(AppDisplay.AppIconMenu.prototype, injections, INJECTED_METHOD_NAME);
+	removeInjection(AppDisplay.AppIconMenu.prototype, INJECTIONS, INJECTED_METHOD_NAME);
 	AppDisplay.AppIconMenu.prototype._loadRecentFiles = null;
 	AppDisplay.AppIconMenu.prototype._addBookmarkButton = null;
 	AppDisplay.AppIconMenu.prototype._loadBookmarks = null;
