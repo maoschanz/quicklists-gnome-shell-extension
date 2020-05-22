@@ -45,31 +45,10 @@ function stringFromArray(data){
 }
 
 //------------------------------------------------------------------------------
-/* do not edit this section */
 
-function injectToFunction(parent, name, func) {
-	let origin = parent[name];
-	parent[name] = function() {
-		let ret;
-		ret = origin.apply(this, arguments);
-			if (ret === undefined)
-				ret = func.apply(this, arguments);
-			return ret;
-		}
-	return origin;
-}
-
-function removeInjection(object, injection, name) {
-	if (injection[name] === undefined)
-		delete object[name];
-	else
-		object[name] = injection[name];
-}
-
-//------------------------------------------------------------------------------
-
-// Performs the required code injections into AppIconMenu
-function injectionInAppsMenus() {
+// Add to AppDisplay.AppIconMenu the required methods to load the recently used
+// files into the menu
+function addRecentFilesLoader() {
 
 	// Load into the app's icon menu a list of items corresponding to recently
 	// used files whose types are among the MIME types supported by the app.
@@ -137,8 +116,13 @@ function injectionInAppsMenus() {
 			this._recentFilesMenu.addMenuItem(recent_item);
 		}
 	};
+}
 
-	//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+// Add to AppDisplay.AppIconMenu the required methods to load the bookmarks and
+// other file-managing-related items into the menu
+function addBookmarksLoader() {
 
 	// Utility adding a button with the icon `iconName` to the menuitem `item`.
 	// Clicking on it will run the bash command `command`.
@@ -285,9 +269,34 @@ function injectionInAppsMenus() {
 			});
 		}
 	};
+}
 
-	//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
+// DO NOT EDIT THIS FUNCTION
+function injectToFunction(parent, name, func) {
+	let origin = parent[name];
+	parent[name] = function() {
+		let ret;
+		ret = origin.apply(this, arguments);
+			if (ret === undefined)
+				ret = func.apply(this, arguments);
+			return ret;
+		}
+	return origin;
+}
+
+// DO NOT EDIT THIS FUNCTION
+function removeInjection(object, injection, name) {
+	if (injection[name] === undefined)
+		delete object[name];
+	else
+		object[name] = injection[name];
+}
+
+// Inject code into the existing method of AppDisplay.AppIconMenu that builds
+// the menu. It'll call the methods previously created by the loaders.
+function injectInAppsMenus() {
 	// This injects items in AppIconMenu's INJECTED_METHOD_NAME method (the
 	// value of this variable isn't the same depending on GS versions).
 	INJECTIONS[INJECTED_METHOD_NAME] = injectToFunction(
@@ -334,7 +343,10 @@ function injectionInAppsMenus() {
 function enable() {
 	RECENT_MANAGER = new Gtk.RecentManager();
 	SETTINGS = Convenience.getSettings();
-	injectionInAppsMenus();
+
+	addBookmarksLoader();
+	addRecentFilesLoader();
+	injectInAppsMenus();
 }
 
 function disable() {
