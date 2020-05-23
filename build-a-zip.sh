@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./update-and-compile-translations.sh
+# ./update-and-compile-translations.sh
 
 cd quicklists@maestroschan.fr
 
