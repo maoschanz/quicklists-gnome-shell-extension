@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 05:25+0200\n"
+"POT-Creation-Date: 2020-05-23 18:00+0200\n"
 "PO-Revision-Date: 2017-02-05 16:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,104 +13,115 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: quicklists@maestroschan.fr/extension.js:85
-#: quicklists@maestroschan.fr/extension.js:169
-#: quicklists@maestroschan.fr/extension.js:186
+#: quicklists@maestroschan.fr/extension.js:69
+#: quicklists@maestroschan.fr/extension.js:126
 #: quicklists@maestroschan.fr/extension.js:199
-#: quicklists@maestroschan.fr/prefs.js:50
+#: quicklists@maestroschan.fr/prefs.js:48
 msgid "Recent files"
 msgstr "Fichiers récents"
 
-#: quicklists@maestroschan.fr/extension.js:125
+#: quicklists@maestroschan.fr/extension.js:113
 msgid "No recent file for this app"
 msgstr "Pas de fichier récent pour cette appli"
 
-#: quicklists@maestroschan.fr/extension.js:171
-#: quicklists@maestroschan.fr/extension.js:192
-msgid "Trash"
-msgstr "Corbeille"
-
-#: quicklists@maestroschan.fr/extension.js:173
-msgid "Favorites"
-msgstr "Favoris"
-
-#: quicklists@maestroschan.fr/extension.js:175
-msgid "Other places"
-msgstr "Autres emplacements"
-
-#: quicklists@maestroschan.fr/extension.js:179
-msgid "Computer"
-msgstr "Ordinateur"
-
-#: quicklists@maestroschan.fr/extension.js:183
+#: quicklists@maestroschan.fr/extension.js:124
 msgid "Home"
 msgstr "Dossier personnel"
 
-#: quicklists@maestroschan.fr/extension.js:189
+#: quicklists@maestroschan.fr/extension.js:125
+msgid "Computer"
+msgstr "Ordinateur"
+
+#: quicklists@maestroschan.fr/extension.js:127
+msgid "Favorites"
+msgstr "Favoris"
+
+#: quicklists@maestroschan.fr/extension.js:128
+msgid "Trash"
+msgstr "Corbeille"
+
+#: quicklists@maestroschan.fr/extension.js:129
+msgid "Other places"
+msgstr "Autres emplacements"
+
+#: quicklists@maestroschan.fr/extension.js:130
 msgid "Network"
 msgstr "Réseau"
 
-#: quicklists@maestroschan.fr/extension.js:213
+#: quicklists@maestroschan.fr/extension.js:225
 msgid "No bookmark"
 msgstr "Pas de signet"
 
-#: quicklists@maestroschan.fr/extension.js:218
+#: quicklists@maestroschan.fr/extension.js:228
 msgid "Error: could not read bookmarks"
-msgstr ""
+msgstr "Erreur : impossible de lire les signets"
 
-#: quicklists@maestroschan.fr/extension.js:250
-#: quicklists@maestroschan.fr/prefs.js:42
+#: quicklists@maestroschan.fr/extension.js:270
+#: quicklists@maestroschan.fr/prefs.js:37
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: quicklists@maestroschan.fr/extension.js:293
+#: quicklists@maestroschan.fr/extension.js:342
 msgid "Manage extensions"
 msgstr "Gérer les extensions"
 
-#: quicklists@maestroschan.fr/prefs.js:45
-msgid "Display bookmarks in a submenu:"
+#: quicklists@maestroschan.fr/prefs.js:40
+msgid "Display bookmarks in a submenu"
 msgstr "Afficher les signets dans un sous-menu"
 
-#: quicklists@maestroschan.fr/prefs.js:46
+#: quicklists@maestroschan.fr/prefs.js:43
 msgid ""
-"Nautilus and Nemo icons will display your bookmarks. If you have many, a "
-"submenu is recommended."
+"File managers icons will display your bookmarks. If you have many, a submenu "
+"is recommended."
 msgstr ""
-"Les icones de Nautilus et Nemo afficheront vos signets. Si vous en avez "
-"beaucoup, un sous-menu est recommandé."
+"Les icônes des gestionnaires de fichiers afficheront vos signets. Si vous en "
+"avez beaucoup, un sous-menu est recommandé."
 
-#: quicklists@maestroschan.fr/prefs.js:64
-msgid "Number of recent files in a menu:"
+#: quicklists@maestroschan.fr/prefs.js:66
+msgid "Number of recent files in a menu"
 msgstr "Nombre de fichiers récents dans un menu"
 
-#: quicklists@maestroschan.fr/prefs.js:65
-msgid ""
-"The maximum number of recent files which will be displayed in the menu of an "
-"application's icon."
-msgstr ""
-"Le nombre maximal de fichiers récents qui seront affichés dans le menu d'une "
-"icone d'application."
-
-#: quicklists@maestroschan.fr/prefs.js:69
-msgid "Display recent files in a submenu:"
+#: quicklists@maestroschan.fr/prefs.js:73
+msgid "Display recent files in a submenu"
 msgstr "Afficher les fichiers récents dans un sous-menu"
 
-#: quicklists@maestroschan.fr/prefs.js:70
+#: quicklists@maestroschan.fr/prefs.js:76
 msgid ""
 "Applications' icons will display recently opened files they can open. If you "
 "want many, a submenu is recommended."
 msgstr ""
-"Les icones des applications afficheront les fichiers récents qu'elles "
+"Les icônes des applications afficheront les fichiers récents qu'elles "
 "peuvent ouvrir. Si vous en voulez beaucoup, un sous-menu est recommandé."
 
-#: quicklists@maestroschan.fr/prefs.js:74
+#: quicklists@maestroschan.fr/prefs.js:81
 msgid "About"
 msgstr "À propos"
 
-#: quicklists@maestroschan.fr/prefs.js:77
+#: quicklists@maestroschan.fr/prefs.js:84
 msgid "Report bugs or ideas"
-msgstr "Rapporter des bugs ou des idées"
+msgstr "Rapporter des bugs/idées"
 
-#: quicklists@maestroschan.fr/prefs.js:89
-msgid "Author:"
-msgstr "Auteur :"
+#: quicklists@maestroschan.fr/prefs.js:90
+#, javascript-format
+msgid "Version %s"
+msgstr "Version %s"
+
+#: quicklists@maestroschan.fr/prefs.js:96
+msgid "Author"
+msgstr "Auteur"
+
+#: quicklists@maestroschan.fr/prefs.js:100
+#: quicklists@maestroschan.fr/prefs.js:103
+msgid "translator-credits"
+msgstr "Romain F. T."
+
+#: quicklists@maestroschan.fr/prefs.js:101
+msgid "Translator"
+msgstr "Traducteur"
+
+#~ msgid ""
+#~ "The maximum number of recent files which will be displayed in the menu of "
+#~ "an application's icon."
+#~ msgstr ""
+#~ "Le nombre maximal de fichiers récents qui seront affichés dans le menu "
+#~ "d'une icône d'application."

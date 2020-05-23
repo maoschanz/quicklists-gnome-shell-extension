@@ -3,21 +3,13 @@
 EXTENSION_ID="quicklists@maestroschan.fr"
 TRANSLATION_ID="quicklists"
 
-#####
+IFS='
+'
 
-if [ $# = 0 ]; then
-	echo "No parameter, exiting now."
-	echo ""
-	echo "Parameters and options for this script:"
-	echo "	xx		update only the language xx, and compile only xx"
-	echo "	--pot		update the pot file"
-	echo "	--compile	compile all languages (without updating them first)"
-	echo "	--all		update all translations files, and compile them all"
-	echo "	--add xx	add a .po file for the language xx"
-	exit 1
-fi
+liste=`ls ./$EXTENSION_ID/locale/`
+prefix="./$EXTENSION_ID/locale"
 
-#####
+################################################################################
 
 function update_pot () {
 	echo "Generating .pot file..."
@@ -26,8 +18,8 @@ function update_pot () {
 
 function update_lang () {
 	echo "Updating translation for: $1"
-	msgmerge $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po $prefix/$TRANSLATION_ID.pot > $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.temp.po
-	mv $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.temp.po $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po
+	# TODO si les fichiers temporaires persistent, il faudra les rm
+	msgmerge --update --previous $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po $prefix/$TRANSLATION_ID.pot
 }
 
 function compile_lang () {
@@ -56,44 +48,34 @@ msgstr \"\"
 	update_lang $1
 }
 
-#####
-
-IFS='
-'
-liste=`ls ./$EXTENSION_ID/locale/`
-prefix="./$EXTENSION_ID/locale"
-
-#####
-
-if [ $1 = "--all" ]; then
+update_all () {
 	update_pot
 	for lang_id in $liste
 	do
 		if [ "$lang_id" != "$TRANSLATION_ID.pot" ]; then
 			update_lang $lang_id
-			compile_lang $lang_id
 		fi
 	done
-elif [ $1 = "--pot" ]; then
-	update_pot
-elif [ $1 = "--compile-only" ]; then
+}
+
+compile_all () {
 	for lang_id in $liste
 	do
 		if [ "$lang_id" != "$TRANSLATION_ID.pot" ]; then
 			compile_lang $lang_id
 		fi
 	done
-elif [ $1 = "--add" ]; then
-	create_po $2
+}
+
+################################################################################
+
+if [ $# = 0 ]; then
+	declare -F
+	exit 1
 else
-	for lang_id in $@
-	do
-		if [ "$lang_id" != "$TRANSLATION_ID.pot" ]; then
-			update_lang $lang_id
-			compile_lang $lang_id
-		fi
-	done
+	$1 $2
 fi
 
 exit 0
 
+################################################################################
