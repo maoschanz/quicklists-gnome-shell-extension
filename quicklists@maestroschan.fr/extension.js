@@ -120,27 +120,38 @@ function addRecentFilesLoader() {
 
 //------------------------------------------------------------------------------
 
+const SPECIAL_PLACES = {
+	'home': ['', 'user-home-symbolic', _("Home")],
+	'computer': [' computer:///', 'computer-symbolic', _("Computer")],
+	'recent': [' recent:///', 'document-open-recent-symbolic', _("Recent files")],
+	'favorites': [' starred:///', 'starred-symbolic', _("Favorites")],
+	'trash': [' trash:///', 'user-trash-symbolic', _("Trash")],
+	'other': [' other-locations:///', 'computer-symbolic', _("Other places")],
+	'network': [' network:///', 'network-workgroup-symbolic', _("Network")]
+};
+
 // Add to AppDisplay.AppIconMenu the required methods to load the bookmarks and
 // other file-managing-related items into the menu
 function addBookmarksLoader() {
 
-	// Utility adding a button with the icon `iconName` to the menuitem `item`.
-	// Clicking on it will run the bash command `command`.
-	AppDisplay.AppIconMenu.prototype._addBookmarkButton = function (item, command, iconName, accessibleName) {
+	// Utility adding a button to the menuitem `item`. The icon of the button,
+	// and its accessible name, depend on `placeId`. The command runned when
+	// clicking on it depends on `placeId` and `commandName`.
+	AppDisplay.AppIconMenu.prototype._addSpecialPlaceButton = function (item, commandName, placeId) {
 		let newButton = new St.Button({
 			reactive: true,
 			can_focus: true,
 			track_hover: true,
-			accessible_name: accessibleName,
-			style_class: 'button',
+			accessible_name: SPECIAL_PLACES[placeId][2],
+			style_class: 'button', // XXX looks bad with some 3rd-party themes
 			style: 'padding-right: 12px; padding-left: 12px;',
 		});
 		newButton.child = new St.Icon({
-			icon_name: iconName,
+			icon_name: SPECIAL_PLACES[placeId][1],
 			icon_size: 16,
 		});
 		newButton.connect('clicked', () => {
-			Util.trySpawnCommandLine(command);
+			Util.trySpawnCommandLine(commandName + SPECIAL_PLACES[placeId][0]);
 			this.close();
 		});
 		item.actor.add(newButton, { expand: true, x_fill: false });
@@ -148,48 +159,40 @@ function addBookmarksLoader() {
 
 	//--------------------------------------------------------------------------
 
-	// Load into the app's icon menu a list of items corresponding to bookmarks.
-	AppDisplay.AppIconMenu.prototype._loadBookmarks = function (commandName) {
-		this._appendSeparator();
+	AppDisplay.AppIconMenu.prototype._addSpecialPlaces = function (commandName) {
+		let buttons_item = new PopupMenu.PopupBaseMenuItem({
+			reactive: false,
+			can_focus: false
+		});
+		// XXX again, wtf is this? this time it's mandatory
+		buttons_item.actor.label_actor = new St.Label({text: ''});
 
-		// These first items are not bookmarks, but have to be available anyway.
-		// They're not exactly the same depending on the file manager.
 		switch (commandName) {
 			case 'nautilus':
-				let buttons_item = new PopupMenu.PopupBaseMenuItem({
-					reactive: false,
-					can_focus: false
-				});
-				// XXX again, wtf is this? this time it's mandatory
-				buttons_item.actor.label_actor = new St.Label({text: ''});
-				this._addBookmarkButton(buttons_item, commandName + ' recent:///',
-				            'document-open-recent-symbolic', _("Recent files"));
-				this._addBookmarkButton(buttons_item, commandName + ' trash:///',
-				                             'user-trash-symbolic', _("Trash"));
-				this._addBookmarkButton(buttons_item, commandName + ' starred:///',
-				                            'starred-symbolic', _("Favorites"));
-				this._addBookmarkButton(buttons_item, commandName + ' other-locations:///',
-				                        'computer-symbolic', _("Other places"));
+				this._addSpecialPlaceButton(buttons_item, commandName, 'recent');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'trash');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'favorites');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'other');
 				this.addMenuItem(buttons_item);
 			break;
+
 			case 'caja':
-				this.addAction(_("Computer"), () => {
-					Util.trySpawnCommandLine(commandName + ' computer:///');
-				}, 'computer-symbolic');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'home');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'recent');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'trash');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'computer');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'network');
+				this.addMenuItem(buttons_item);
+			break
+
 			case 'thunar':
-				this.addAction(_("Home"), () => {
-					Util.trySpawnCommandLine(commandName);
-				}, 'user-home-symbolic');
-				this.addAction(_("Recent files"), () => {
-					Util.trySpawnCommandLine(commandName + ' recent:///');
-				}, 'document-open-recent-symbolic');
-				this.addAction(_("Network"), () => {
-					Util.trySpawnCommandLine(commandName + ' network:///');
-				}, 'network-workgroup-symbolic');
-				this.addAction(_("Trash"), () => {
-					Util.trySpawnCommandLine(commandName + ' trash:///');
-				}, 'user-trash-symbolic');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'home');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'recent');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'trash');
+				this._addSpecialPlaceButton(buttons_item, commandName, 'network');
+				this.addMenuItem(buttons_item);
 			break;
+
 			case 'nemo':
 			default:
 				// nemo already has a few quicklist actions
@@ -198,6 +201,17 @@ function addBookmarksLoader() {
 				}, 'document-open-recent-symbolic');
 			break;
 		}
+	};
+
+	//--------------------------------------------------------------------------
+
+	// Load into the app's icon menu a list of items corresponding to bookmarks.
+	AppDisplay.AppIconMenu.prototype._loadBookmarks = function (commandName) {
+		this._appendSeparator();
+
+		// The first items are not bookmarks, but have to be available anyway.
+		// They're not exactly the same depending on the file manager.
+		this._addSpecialPlaces(commandName);
 
 		// Read the file with GTK bookmarks
 		let noBookmarkLabel = "";
@@ -312,6 +326,7 @@ function injectInAppsMenus() {
 						this._loadBookmarks('nautilus');
 					break;
 					case 'Thunar.desktop':
+					case 'thunar.desktop':
 						this._loadBookmarks('thunar');
 					break;
 					case 'caja.desktop':
