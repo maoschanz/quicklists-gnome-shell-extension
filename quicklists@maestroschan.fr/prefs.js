@@ -17,39 +17,41 @@ const Convenience = Me.imports.convenience;
 
 //------------------------------------------------------------------------------
 
-function init() {
-	Convenience.initTranslations();
-}
-
-//------------------------------------------------------------------------------
-
 const QuicklistsPrefsWidget = new Lang.Class({
 	Name: "QuicklistsPrefsWidget",
-	Extends: Gtk.Box,
-	
+	Extends: Gtk.Grid,
+
 	_init () {
 		this.parent({
 			visible: true,
 			can_focus: false,
-			margin_left: 50,
-			margin_right: 50,
-			margin_top: 20,
-			margin_bottom: 20,
-			orientation: Gtk.Orientation.VERTICAL,
-			spacing: 18
+			halign: Gtk.Align.CENTER,
+			column_spacing: 16,
+			row_spacing: 12,
+			margin: 12
 		});
+		this._currentY = 0;
+
 		//----------------------------------------------------------------------
-		let s1 = this.addSection(_("Bookmarks"));
+
+		this._startSection(_("Bookmarks"));
 		
-		s1.add(this.addRow(
-			_("Display bookmarks in a submenu:"),
-			_("Nautilus and Nemo icons will display your bookmarks. If you have many, a submenu is recommended."),
+		this._addRow(
+			_("Display bookmarks in a submenu"),
 			this.getSwitch('use-submenu-bookmarks')
-		));
+		);
+		this._addHelp(_("File managers icons will display your bookmarks. If " +
+		                           "you have many, a submenu is recommended."));
+
 		//----------------------------------------------------------------------
-		let s2 = this.addSection(_("Recent files"));
-		
-		let recentFilesNumber_spinButton = new Gtk.SpinButton({ valign: Gtk.Align.CENTER });
+
+		this._startSection(_("Recent files"));
+
+		let recentFilesNumber_spinButton = new Gtk.SpinButton({
+			valign: Gtk.Align.CENTER,
+			halign: Gtk.Align.START
+			// TODO construire un max ici
+		});
 		recentFilesNumber_spinButton.set_range(0, 40);
 		recentFilesNumber_spinButton.set_value(SETTINGS.get_int('max-recents'));
 		recentFilesNumber_spinButton.set_increments(1, 1);
@@ -60,69 +62,97 @@ const QuicklistsPrefsWidget = new Lang.Class({
 				SETTINGS.set_int('max-recents', value);
 			})
 		);
-		s2.add(this.addRow(
-			_("Number of recent files in a menu:"),
-			_("The maximum number of recent files which will be displayed in the menu of an application's icon."),
+		this._addRow(
+			_("Number of recent files in a menu"),
 			recentFilesNumber_spinButton
-		));
-		s2.add(this.addRow(
-			_("Display recent files in a submenu:"),
-			_("Applications' icons will display recently opened files they can open. If you want many, a submenu is recommended."),
+		);
+		// this._addHelp(_("The maximum number of recent files which will be " +
+		//                     "displayed in the menu of an application's icon."));
+
+		this._addRow(
+			_("Display recent files in a submenu"),
 			this.getSwitch('use-submenu-recent')
-		));
+		);
+		this._addHelp(_("Applications' icons will display recently opened " +
+		   "files they can open. If you want many, a submenu is recommended."));
+
 		//----------------------------------------------------------------------
-		let s3 = this.addSection(_("About"));
-		
-		let url_button = new Gtk.LinkButton({
+
+		this._startSection(_("About"));
+
+		let urlButton = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
-			uri: Me.metadata.url.toString()
+			uri: Me.metadata.url.toString() + "/issues",
+			valign: Gtk.Align.CENTER,
+			halign: Gtk.Align.START
 		});
-		let version_label = new Gtk.Label({
-			label: ' (v' + Me.metadata.version.toString() + ') ',
-		});
-		s3.add(this.addRow('<b>' + Me.metadata.name.toString() + '</b>', null, version_label));
-		s3.add(this.addRow(
-			_(Me.metadata.description.toString()),
-			"NOT COMPATIBLE WITH DASH-TO-DOCK THUMBNAIL PREVIEWS",
-			new Gtk.Box()
-		));
-		s3.add(this.addRow(_("Author:") + " Romain F. T.", null, url_button));
-		//----------------------------------------------------------------------
+		this._addRow(
+			_("Version %s").replace('%s', Me.metadata.version.toString()),
+			urlButton
+		);
+
+		// this._addHelp(_(Me.metadata.description.toString()));
+
+		this._addRow(_("Author"), new Gtk.Label({
+			halign: Gtk.Align.START,
+			label: "Romain F. T."
+		}));
+		if (_('translator-credits') != 'translator-credits') {
+			this._addRow(_("Translator"), new Gtk.Label({
+				halign: Gtk.Align.START,
+				label: _('translator-credits')
+			}));
+		}
 	},
-	
-	addSection (titre) {
-		let frame = new Gtk.Frame({
-			label: titre,
-			label_xalign: 0.1,
+
+	//--------------------------------------------------------------------------
+
+	_startSection (title) {
+		let separator = new Gtk.Separator({
+			valign: Gtk.Align.CENTER
 		});
-		let listbox = new Gtk.Box({	orientation: Gtk.Orientation.VERTICAL });
-		frame.add(listbox);
-		this.add(frame);
-		return listbox;
+		let rowLabel = new Gtk.Label({
+			label: "<b>" + title + "</b>",
+			halign: Gtk.Align.END,
+			use_markup: true
+		});
+		this.attach(rowLabel, 0, this._currentY, 1, 1);
+		this.attach(separator, 1, this._currentY, 2, 1);
+
+		this._currentY++;
 	},
-	
-	addRow (label, tooltip, widget) {
+
+	_addRow (label, widget) {
 		let rowLabel = new Gtk.Label({
 			label: label,
-			halign: Gtk.Align.START,
-//			wrap: true,
-			use_markup: true,
-			visible: true,
+			halign: Gtk.Align.END,
+			use_markup: true
 		});
-		let rowBox = new Gtk.Box({
-			orientation: Gtk.Orientation.HORIZONTAL,
-			tooltip_text: tooltip,
-			spacing: 15,
-			margin: 10,
-			visible: true,
-		});
-		rowBox.pack_start(rowLabel, false, false, 0);
-		rowBox.pack_end(widget, false, false, 0);
-		return rowBox;
+		this.attach(rowLabel, 0, this._currentY, 2, 1);
+		this.attach(widget, 2, this._currentY, 1, 1);
+
+		this._currentY++;
 	},
-	
+
+	_addHelp (helpLabel) {
+		let rowLabel = new Gtk.Label({
+			label: helpLabel,
+			halign: Gtk.Align.CENTER,
+			wrap: true,
+			use_markup: true,
+			max_width_chars: 60
+		});
+		rowLabel.get_style_context().add_class('dim-label');
+		this.attach(rowLabel, 0, this._currentY, 3, 1);
+
+		this._currentY++;
+	},
+
 	getSwitch (booleanSetting) {
-		let rowSwitch = new Gtk.Switch({ valign: Gtk.Align.CENTER });
+		let rowSwitch = new Gtk.Switch({
+			valign: Gtk.Align.CENTER,
+			halign: Gtk.Align.START
+		});
 		rowSwitch.set_state(SETTINGS.get_boolean(booleanSetting));
 		rowSwitch.connect('notify::active', (widget) => {
 			SETTINGS.set_boolean(booleanSetting, widget.active);
@@ -130,6 +160,12 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		return rowSwitch;
 	},
 });
+
+//------------------------------------------------------------------------------
+
+function init() {
+	Convenience.initTranslations();
+}
 
 let SETTINGS = Convenience.getSettings();
 
@@ -139,4 +175,5 @@ function buildPrefsWidget() {
 	return widget;
 }
 
+//------------------------------------------------------------------------------
 

@@ -25,8 +25,8 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 
 ## Manual installation
 
-- Download files
-- Run `./install.sh`, it will move the "`quicklists@maestroschan.fr`" folder into `~/.local/share/gnome-shell/extensions/`
+- Clone the repository, or download its files
+- Run `./install.sh`: it will move the "`quicklists@maestroschan.fr`" folder into `~/.local/share/gnome-shell/extensions/`
 - You may need to restart the GNOME Shell environment (logout and login back, or <kbd>Alt</kbd> + <kbd>F2</kbd>, `r`, enter)
 - Then activate it (with GNOME Tweaks, or from GNOME Software, or directly launch `gnome-shell-extension-prefs`)
 
@@ -34,7 +34,6 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 
 ## TODO
 
-- use a grid for prefs?
 - if !appmenu, integrate the file list into the menu
 - with a search entry ???
 
