@@ -62,15 +62,15 @@ function addRecentFilesLoader() {
 		// what it should open.
 		if (app_types == null) { return; }
 
+		this._appendSeparator();
+
 		// Remember as `this._recentFilesMenu` the menu where items shall be
 		// added. XXX this is suboptimal: it's called each time a menu is open!!
 		if (SETTINGS.get_boolean('use-submenu-recent')) {
-			this._appendSeparator();
 			let recentMenuItem = new PopupMenu.PopupSubMenuMenuItem(_("Recent files"));
 			this.addMenuItem(recentMenuItem);
 			this._recentFilesMenu = recentMenuItem.menu;
 		} else {
-			this._appendSeparator();
 			// That labeled separator would be prefered by GS designers, but the
 			// current implementation is really very ugly. So no.
 			// this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem(_("Recent files")));
