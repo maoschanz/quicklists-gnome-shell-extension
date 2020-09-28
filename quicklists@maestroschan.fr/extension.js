@@ -154,7 +154,8 @@ function addBookmarksLoader() {
 			Util.trySpawnCommandLine(commandName + SPECIAL_PLACES[placeId][0]);
 			this.close();
 		});
-		item.actor.add(newButton, { expand: true, x_fill: false });
+		item.actor.add(newButton /*, { expand: true, x_fill: false }*/);
+		// FIXME understand why tf did GNOME Shell maintainers removed this
 	};
 
 	//--------------------------------------------------------------------------
