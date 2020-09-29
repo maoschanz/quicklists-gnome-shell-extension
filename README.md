@@ -34,7 +34,7 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 
 ## TODO
 
-- close overview automatically
+- stack with sidebar for prefs
 
 - if !appmenu, integrate the file list into the menu
 - with a search entry ???

@@ -2,6 +2,15 @@
 <schemalist gettext-domain="quicklists">
   <schema id="org.gnome.shell.extensions.quicklists" path="/org/gnome/shell/extensions/quicklists/">
 
+    <!-- General settings -->
+    <key type="b" name="close-overview">
+      <default>true</default>
+      <summary>Auto-close the overview</summary>
+      <description>
+        Close automattically the overview each time an item is clicked.
+      </description>
+    </key>
+
     <!-- Bookmarks -->
     <key type="b" name="use-submenu-bookmarks">
       <default>true</default>

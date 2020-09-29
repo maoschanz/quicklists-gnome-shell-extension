@@ -34,8 +34,18 @@ const QuicklistsPrefsWidget = new Lang.Class({
 
 		//----------------------------------------------------------------------
 
+		this._startSection(_("General"));
+
+		this._addRow(
+			_("Automatically close the overview"),
+			this.getSwitch('close-overview')
+		);
+		this._addHelp(_("Close the overview after clicking on a menu item."));
+
+		//----------------------------------------------------------------------
+
 		this._startSection(_("Bookmarks"));
-		
+
 		this._addRow(
 			_("Display bookmarks in a submenu"),
 			this.getSwitch('use-submenu-bookmarks')
@@ -97,7 +107,7 @@ const QuicklistsPrefsWidget = new Lang.Class({
 			halign: Gtk.Align.START,
 			label: "Romain F. T."
 		}));
-		if (_('translator-credits') != 'translator-credits') {
+		if(_('translator-credits') != 'translator-credits') {
 			this._addRow(_("Translator"), new Gtk.Label({
 				halign: Gtk.Align.START,
 				label: _('translator-credits')
