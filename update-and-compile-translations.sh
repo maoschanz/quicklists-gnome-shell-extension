@@ -1,35 +1,35 @@
 #!/bin/bash
 
-EXTENSION_ID="quicklists@maestroschan.fr"
-TRANSLATION_ID="quicklists"
+EXT_NAME="quicklists"
+EXT_ID="$EXT_NAME@maestroschan.fr"
 
 IFS='
 '
 
-liste=`ls ./$EXTENSION_ID/locale/`
-prefix="./$EXTENSION_ID/locale"
+liste=`ls ./$EXT_ID/locale/`
+prefix="./$EXT_ID/locale"
 
 ################################################################################
 
 function update_pot () {
 	echo "Generating .pot file..."
-	xgettext --files-from=POTFILES.in --from-code=UTF-8 --output=$EXTENSION_ID/locale/$TRANSLATION_ID.pot
+	xgettext --files-from=POTFILES.in --from-code=UTF-8 --add-location=file --output=$EXT_ID/locale/$EXT_NAME.pot
 }
 
 function update_lang () {
 	echo "Updating translation for: $1"
-	# TODO si les fichiers temporaires persistent, il faudra les rm
-	msgmerge --update --previous $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po $prefix/$TRANSLATION_ID.pot
+	msgmerge --update --previous $prefix/$1/LC_MESSAGES/$EXT_NAME.po $prefix/$EXT_NAME.pot
+	# rm $prefix/$1/LC_MESSAGES/$EXT_NAME.po~
 }
 
 function compile_lang () {
 	echo "Compiling translation for: $1"
-	msgfmt $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po -o $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.mo
+	msgfmt $prefix/$1/LC_MESSAGES/$EXT_NAME.po -o $prefix/$1/LC_MESSAGES/$EXT_NAME.mo
 }
 
 function create_po () {
 	mkdir -p $prefix/$1/LC_MESSAGES
-	touch $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po
+	touch $prefix/$1/LC_MESSAGES/$EXT_NAME.po
 	echo "msgid \"\"
 msgstr \"\"
 \"Project-Id-Version: \\n\"
@@ -44,7 +44,7 @@ msgstr \"\"
 \"Content-Transfer-Encoding: 8bit\\n\"
 \"X-Generator: \\n\"
 \"Plural-Forms: nplurals=2; plural=(n > 1);\\n\"
-" > $prefix/$1/LC_MESSAGES/$TRANSLATION_ID.po
+" > $prefix/$1/LC_MESSAGES/$EXT_NAME.po
 	update_lang $1
 }
 
@@ -52,7 +52,7 @@ update_all () {
 	update_pot
 	for lang_id in $liste
 	do
-		if [ "$lang_id" != "$TRANSLATION_ID.pot" ]; then
+		if [ "$lang_id" != "$EXT_NAME.pot" ]; then
 			update_lang $lang_id
 		fi
 	done
@@ -61,7 +61,7 @@ update_all () {
 compile_all () {
 	for lang_id in $liste
 	do
-		if [ "$lang_id" != "$TRANSLATION_ID.pot" ]; then
+		if [ "$lang_id" != "$EXT_NAME.pot" ]; then
 			compile_lang $lang_id
 		fi
 	done

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 18:00+0200\n"
+"POT-Creation-Date: 2020-09-29 04:32+0200\n"
 "PO-Revision-Date: 2020-01-24 22:29+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -19,65 +19,73 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: quicklists@maestroschan.fr/extension.js:69
-#: quicklists@maestroschan.fr/extension.js:126
-#: quicklists@maestroschan.fr/extension.js:199
-#: quicklists@maestroschan.fr/prefs.js:48
+#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
 msgid "Recent files"
 msgstr "Nedavne datoteke"
 
-#: quicklists@maestroschan.fr/extension.js:113
+#: quicklists@maestroschan.fr/extension.js
 #, fuzzy
 msgid "No recent file for this app"
 msgstr "Broj nedavnih datoteka u izborniku"
 
-#: quicklists@maestroschan.fr/extension.js:124
+#: quicklists@maestroschan.fr/extension.js
 msgid "Home"
 msgstr "Home"
 
-#: quicklists@maestroschan.fr/extension.js:125
+#: quicklists@maestroschan.fr/extension.js
 msgid "Computer"
 msgstr "Kompjuter"
 
-#: quicklists@maestroschan.fr/extension.js:127
+#: quicklists@maestroschan.fr/extension.js
 msgid "Favorites"
 msgstr "Favoriti"
 
-#: quicklists@maestroschan.fr/extension.js:128
+#: quicklists@maestroschan.fr/extension.js
 msgid "Trash"
 msgstr "Smeće"
 
-#: quicklists@maestroschan.fr/extension.js:129
+#: quicklists@maestroschan.fr/extension.js
 msgid "Other places"
 msgstr "Ostala mjesta"
 
-#: quicklists@maestroschan.fr/extension.js:130
+#: quicklists@maestroschan.fr/extension.js
 msgid "Network"
 msgstr "Mreža"
 
-#: quicklists@maestroschan.fr/extension.js:225
+#: quicklists@maestroschan.fr/extension.js
 #, fuzzy
 msgid "No bookmark"
 msgstr "Zabilješke"
 
-#: quicklists@maestroschan.fr/extension.js:228
+#: quicklists@maestroschan.fr/extension.js
 msgid "Error: could not read bookmarks"
 msgstr ""
 
-#: quicklists@maestroschan.fr/extension.js:270
-#: quicklists@maestroschan.fr/prefs.js:37
+#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
 msgid "Bookmarks"
 msgstr "Zabilješke"
 
-#: quicklists@maestroschan.fr/extension.js:342
+#: quicklists@maestroschan.fr/extension.js
 msgid "Manage extensions"
 msgstr "Upravljaj proširenjima"
 
-#: quicklists@maestroschan.fr/prefs.js:40
+#: quicklists@maestroschan.fr/prefs.js
+msgid "General"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Automatically close the overview"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Close the overview after clicking on a menu item."
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Prikaži zabilješke u podizborniku"
 
-#: quicklists@maestroschan.fr/prefs.js:43
+#: quicklists@maestroschan.fr/prefs.js
 #, fuzzy
 #| msgid ""
 #| "Nautilus and Nemo icons will display your bookmarks. If you have many, a "
@@ -89,15 +97,15 @@ msgstr ""
 "Nautilus i Nemo ikone će prikazati tvoje zabilješke. Ako ih imaš puno, "
 "preporučujemo koristiti podizbornik."
 
-#: quicklists@maestroschan.fr/prefs.js:66
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
 msgstr "Broj nedavnih datoteka u izborniku"
 
-#: quicklists@maestroschan.fr/prefs.js:73
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display recent files in a submenu"
 msgstr "Prikaži nedavne datoteke u podizborniku"
 
-#: quicklists@maestroschan.fr/prefs.js:76
+#: quicklists@maestroschan.fr/prefs.js
 msgid ""
 "Applications' icons will display recently opened files they can open. If you "
 "want many, a submenu is recommended."
@@ -105,29 +113,28 @@ msgstr ""
 "Ikone programa će prikazati nedavno otvorene datoteke. Ako ih želiš imati "
 "puno, preporučujemo koristiti podizbornik."
 
-#: quicklists@maestroschan.fr/prefs.js:81
+#: quicklists@maestroschan.fr/prefs.js
 msgid "About"
 msgstr "Informacije"
 
-#: quicklists@maestroschan.fr/prefs.js:84
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Report bugs or ideas"
 msgstr "Prijavi greške ili ideje"
 
-#: quicklists@maestroschan.fr/prefs.js:90
+#: quicklists@maestroschan.fr/prefs.js
 #, javascript-format
 msgid "Version %s"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:96
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Author"
 msgstr "Autor"
 
-#: quicklists@maestroschan.fr/prefs.js:100
-#: quicklists@maestroschan.fr/prefs.js:103
+#: quicklists@maestroschan.fr/prefs.js
 msgid "translator-credits"
 msgstr ""
 
-#: quicklists@maestroschan.fr/prefs.js:101
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr ""
 
