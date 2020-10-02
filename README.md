@@ -39,5 +39,7 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 - if !appmenu, integrate the file list into the menu
 - with a search entry ???
 
+- translators au pluriel
+
 -->
 
