@@ -1,0 +1,131 @@
+# ITALIAN TRANSLATION FOR QUICKLISTS.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-29 04:32+0200\n"
+"PO-Revision-Date: 2020-10-03 17:00+0200\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
+msgid "Recent files"
+msgstr "File recenti"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "No recent file for this app"
+msgstr "Nessun file recente per questa app"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Home"
+msgstr "Casa"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Computer"
+msgstr "Computer"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Favorites"
+msgstr "Preferiti"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Trash"
+msgstr "Cestino"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Other places"
+msgstr "Altri posti"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Network"
+msgstr "Rete"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "No bookmark"
+msgstr "Nessun segnalibro"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Error: could not read bookmarks"
+msgstr "Errore: impossibile leggere i segnalibri"
+
+#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
+msgid "Bookmarks"
+msgstr "Segnalibri"
+
+#: quicklists@maestroschan.fr/extension.js
+msgid "Manage extensions"
+msgstr "Gestisci estensioni"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "General"
+msgstr "Generale"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Automatically close the overview"
+msgstr "Chiudi automaticamente la panoramica"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Close the overview after clicking on a menu item."
+msgstr "Chiudere la panoramica dopo aver fatto clic su una voce di menu."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display bookmarks in a submenu"
+msgstr "Visualizza i segnalibri in un sottomenu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"File managers icons will display your bookmarks. If you have many, a submenu "
+"is recommended."
+msgstr ""
+"Le icone dei gestori di file mostreranno i tuoi segnalibri. Se ne hai molti, un sottomenu"
+"è raccomandato."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Number of recent files in a menu"
+msgstr "Numero di file recenti in un menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display recent files in a submenu"
+msgstr "Visualizza i file recenti in un sottomenu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"Applications' icons will display recently opened files they can open. If you "
+"want many, a submenu is recommended."
+msgstr ""
+"Le icone delle applicazioni mostreranno i file aperti di recente che possono essere aperti. Se tu"
+"ne vuoi molti, si consiglia un sottomenu."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "About"
+msgstr "Inoformazioni"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Report bugs or ideas"
+msgstr "Segnala bug o idee"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, javascript-format
+msgid "Version %s"
+msgstr "Version %s"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Author"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "translator-credits"
+msgstr "traduttore-crediti"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Translator"
+msgstr "Albano Battistella"
