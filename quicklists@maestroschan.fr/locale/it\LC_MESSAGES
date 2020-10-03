@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -27,7 +26,7 @@ msgstr "Nessun file recente per questa app"
 
 #: quicklists@maestroschan.fr/extension.js
 msgid "Home"
-msgstr "Casa"
+msgstr "FIle personali"
 
 #: quicklists@maestroschan.fr/extension.js
 msgid "Computer"
