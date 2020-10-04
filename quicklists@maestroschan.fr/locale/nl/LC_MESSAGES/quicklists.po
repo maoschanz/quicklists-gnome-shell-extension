@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-29 04:32+0200\n"
-"PO-Revision-Date: 2020-05-24 14:06+0200\n"
+"PO-Revision-Date: 2020-10-04 13:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
@@ -24,7 +24,7 @@ msgstr "Recente bestanden"
 
 #: quicklists@maestroschan.fr/extension.js
 msgid "No recent file for this app"
-msgstr "Geen recente bestanden van deze toepassing"
+msgstr "Deze toepassing heeft geen recente bestanden"
 
 #: quicklists@maestroschan.fr/extension.js
 msgid "Home"
@@ -68,15 +68,15 @@ msgstr "Uitbreidingen beheren"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Automatically close the overview"
-msgstr ""
+msgstr "Overzicht automatisch sluiten"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Close the overview after clicking on a menu item."
-msgstr ""
+msgstr "Sluit het overzicht na het klikken op een menu-item."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
@@ -88,7 +88,7 @@ msgid ""
 "is recommended."
 msgstr ""
 "Bestandsbeheerders tonen je bladwijzers. Als je er veel hebt, dan is het "
-"wellicht handig een onderliggend menu te maken."
+"aanbevolet een onderliggend menu te maken."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -103,9 +103,8 @@ msgid ""
 "Applications' icons will display recently opened files they can open. If you "
 "want many, a submenu is recommended."
 msgstr ""
-"Toepassingspictogrammen tonen de recent geopende bestanden die kunnen worden "
-"geopend. Als je er veel hebt, dan is het aan te bevelen een onderliggend "
-"menu te gebruiken."
+"Toepassingspictogrammen tonen de recent geopende bestanden. Als je er veel "
+"hebt, dan is het aanbevolen een onderliggend menu te gebruiken."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -113,7 +112,7 @@ msgstr "Over"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Report bugs or ideas"
-msgstr "Bugs melden of ideëen aandragen"
+msgstr "Bugs melden of ideeën delen"
 
 #: quicklists@maestroschan.fr/prefs.js
 #, javascript-format
