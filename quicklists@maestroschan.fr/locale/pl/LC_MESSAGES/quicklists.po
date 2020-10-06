@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 04:32+0200\n"
+"POT-Creation-Date: 2020-10-06 02:05+0200\n"
 "PO-Revision-Date: 2019-06-21 05:20+0200\n"
 "Last-Translator: Alex <rylatgl@gmail.com>\n"
 "Language-Team: Polish (https://gitlab.com/alex4401)\n"
@@ -82,6 +82,34 @@ msgid "Close the overview after clicking on a menu item."
 msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
+msgid "Searchable lists"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Number of recent files in a menu"
+msgstr "Liczba niedawno odwiedzonych plików w menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
+"Największa liczba niedawno odwiedzonych plików, która może być wyświetlona w "
+"menu ikony jakiejś aplikacji."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display recent files in a submenu"
+msgstr "Wyświetlaj niedawno odwiedzone pliki w pod-menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"Applications' icons will display recently opened files they can open. If you "
+"want many, a submenu is recommended."
+msgstr ""
+"Ikony aplikacji będą wyświetlały niedawno odwiedzone pliki, które mogą "
+"otwierać. Przy dużej ilości zalecane jest pod-menu."
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Wyświetlaj zakładki w pod-menu"
 
@@ -98,20 +126,10 @@ msgstr ""
 "zalecane jest użycie pod-menu."
 
 #: quicklists@maestroschan.fr/prefs.js
-msgid "Number of recent files in a menu"
-msgstr "Liczba niedawno odwiedzonych plików w menu"
-
-#: quicklists@maestroschan.fr/prefs.js
-msgid "Display recent files in a submenu"
-msgstr "Wyświetlaj niedawno odwiedzone pliki w pod-menu"
-
-#: quicklists@maestroschan.fr/prefs.js
-msgid ""
-"Applications' icons will display recently opened files they can open. If you "
-"want many, a submenu is recommended."
-msgstr ""
-"Ikony aplikacji będą wyświetlały niedawno odwiedzone pliki, które mogą "
-"otwierać. Przy dużej ilości zalecane jest pod-menu."
+#, fuzzy
+#| msgid "Favorites"
+msgid "Web favorites"
+msgstr "Ulubione"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -137,13 +155,6 @@ msgstr ""
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr ""
-
-#~ msgid ""
-#~ "The maximum number of recent files which will be displayed in the menu of "
-#~ "an application's icon."
-#~ msgstr ""
-#~ "Największa liczba niedawno odwiedzonych plików, która może być "
-#~ "wyświetlona w menu ikony jakiejś aplikacji."
 
 #~ msgid "Settings"
 #~ msgstr "Ustawienia"

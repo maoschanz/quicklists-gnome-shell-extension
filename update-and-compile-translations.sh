@@ -19,7 +19,7 @@ function update_pot () {
 function update_lang () {
 	echo "Updating translation for: $1"
 	msgmerge --update --previous $prefix/$1/LC_MESSAGES/$EXT_NAME.po $prefix/$EXT_NAME.pot
-	# rm $prefix/$1/LC_MESSAGES/$EXT_NAME.po~
+	rm $prefix/$1/LC_MESSAGES/$EXT_NAME.po~
 }
 
 function compile_lang () {

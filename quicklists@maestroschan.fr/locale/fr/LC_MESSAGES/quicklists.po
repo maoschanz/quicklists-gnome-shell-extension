@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 04:32+0200\n"
+"POT-Creation-Date: 2020-10-06 02:05+0200\n"
 "PO-Revision-Date: 2017-02-05 16:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,20 +74,20 @@ msgid "Close the overview after clicking on a menu item."
 msgstr "Fermer la vue des activités après un clic sur un item du menu."
 
 #: quicklists@maestroschan.fr/prefs.js
-msgid "Display bookmarks in a submenu"
-msgstr "Afficher les signets dans un sous-menu"
-
-#: quicklists@maestroschan.fr/prefs.js
-msgid ""
-"File managers icons will display your bookmarks. If you have many, a submenu "
-"is recommended."
-msgstr ""
-"Les icônes des gestionnaires de fichiers afficheront vos signets. Si vous en "
-"avez beaucoup, un sous-menu est recommandé."
+msgid "Searchable lists"
+msgstr "Listes cherchables"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
 msgstr "Nombre de fichiers récents dans un menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
+"Le nombre maximal de fichiers récents qui seront affichés dans le menu d'une "
+"icône d'application."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Display recent files in a submenu"
@@ -100,6 +100,22 @@ msgid ""
 msgstr ""
 "Les icônes des applications afficheront les fichiers récents qu'elles "
 "peuvent ouvrir. Si vous en voulez beaucoup, un sous-menu est recommandé."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display bookmarks in a submenu"
+msgstr "Afficher les signets dans un sous-menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"File managers icons will display your bookmarks. If you have many, a submenu "
+"is recommended."
+msgstr ""
+"Les icônes des gestionnaires de fichiers afficheront vos signets. Si vous en "
+"avez beaucoup, un sous-menu est recommandé."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Web favorites"
+msgstr "Favoris web"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -125,10 +141,3 @@ msgstr "Romain F. T."
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr "Traducteur"
-
-#~ msgid ""
-#~ "The maximum number of recent files which will be displayed in the menu of "
-#~ "an application's icon."
-#~ msgstr ""
-#~ "Le nombre maximal de fichiers récents qui seront affichés dans le menu "
-#~ "d'une icône d'application."

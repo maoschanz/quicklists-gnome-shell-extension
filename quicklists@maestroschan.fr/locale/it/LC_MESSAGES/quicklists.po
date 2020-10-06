@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 04:32+0200\n"
+"POT-Creation-Date: 2020-10-06 02:11+0200\n"
 "PO-Revision-Date: 2020-10-03 17:00+0200\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -77,20 +77,18 @@ msgid "Close the overview after clicking on a menu item."
 msgstr "Chiudere la panoramica dopo aver fatto clic su una voce di menu."
 
 #: quicklists@maestroschan.fr/prefs.js
-msgid "Display bookmarks in a submenu"
-msgstr "Visualizza i segnalibri in un sottomenu"
-
-#: quicklists@maestroschan.fr/prefs.js
-msgid ""
-"File managers icons will display your bookmarks. If you have many, a submenu "
-"is recommended."
+msgid "Searchable lists"
 msgstr ""
-"Le icone dei gestori di file mostreranno i tuoi segnalibri. Se ne hai molti, un sottomenu"
-"è raccomandato."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
 msgstr "Numero di file recenti in un menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Display recent files in a submenu"
@@ -101,8 +99,26 @@ msgid ""
 "Applications' icons will display recently opened files they can open. If you "
 "want many, a submenu is recommended."
 msgstr ""
-"Le icone delle applicazioni mostreranno i file aperti di recente che possono essere aperti. Se tu"
-"ne vuoi molti, si consiglia un sottomenu."
+"Le icone delle applicazioni mostreranno i file aperti di recente che possono "
+"essere aperti. Se tune vuoi molti, si consiglia un sottomenu."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display bookmarks in a submenu"
+msgstr "Visualizza i segnalibri in un sottomenu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"File managers icons will display your bookmarks. If you have many, a submenu "
+"is recommended."
+msgstr ""
+"Le icone dei gestori di file mostreranno i tuoi segnalibri. Se ne hai molti, "
+"un sottomenuè raccomandato."
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Favorites"
+msgid "Web favorites"
+msgstr "Preferiti"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"

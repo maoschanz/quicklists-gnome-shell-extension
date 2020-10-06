@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 04:32+0200\n"
+"POT-Creation-Date: 2020-10-06 02:05+0200\n"
 "PO-Revision-Date: 2020-10-04 13:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -79,20 +79,20 @@ msgid "Close the overview after clicking on a menu item."
 msgstr "Sluit het overzicht na het klikken op een menu-item."
 
 #: quicklists@maestroschan.fr/prefs.js
-msgid "Display bookmarks in a submenu"
-msgstr "Bladwijzers tonen in onderliggend menu"
-
-#: quicklists@maestroschan.fr/prefs.js
-msgid ""
-"File managers icons will display your bookmarks. If you have many, a submenu "
-"is recommended."
+msgid "Searchable lists"
 msgstr ""
-"Bestandsbeheerders tonen je bladwijzers. Als je er veel hebt, dan is het "
-"aanbevolet een onderliggend menu te maken."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
 msgstr "Aantal recente bestanden in menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"The maximum number of recent files which will be displayed in the menu of an "
+"application's icon."
+msgstr ""
+"Het maximaal aantal recente bestanden dat wordt getoond in het menu van de "
+"betreffende toepassing."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Display recent files in a submenu"
@@ -105,6 +105,24 @@ msgid ""
 msgstr ""
 "Toepassingspictogrammen tonen de recent geopende bestanden. Als je er veel "
 "hebt, dan is het aanbevolen een onderliggend menu te gebruiken."
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display bookmarks in a submenu"
+msgstr "Bladwijzers tonen in onderliggend menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"File managers icons will display your bookmarks. If you have many, a submenu "
+"is recommended."
+msgstr ""
+"Bestandsbeheerders tonen je bladwijzers. Als je er veel hebt, dan is het "
+"aanbevolet een onderliggend menu te maken."
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Favorites"
+msgid "Web favorites"
+msgstr "Favorieten"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -130,13 +148,6 @@ msgstr "Heimen Stoffels"
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr "Vertaler"
-
-#~ msgid ""
-#~ "The maximum number of recent files which will be displayed in the menu of "
-#~ "an application's icon."
-#~ msgstr ""
-#~ "Het maximaal aantal recente bestanden dat wordt getoond in het menu van "
-#~ "de betreffende toepassing."
 
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
