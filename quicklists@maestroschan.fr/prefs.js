@@ -15,47 +15,55 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
-//------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 
 const QuicklistsPrefsWidget = new Lang.Class({
 	Name: "QuicklistsPrefsWidget",
-	Extends: Gtk.Grid,
+	Extends: Gtk.Box,
 
 	_init () {
 		this.parent({
 			visible: true,
 			can_focus: false,
 			halign: Gtk.Align.CENTER,
-			column_spacing: 16,
-			row_spacing: 12,
-			margin: 12
+			orientation: Gtk.Orientation.HORIZONTAL
 		});
-		this._currentY = 0;
 
-		//----------------------------------------------------------------------
+		this._stack = new Gtk.Stack({
+			visible: true,
+			can_focus: false,
+			transition_type: Gtk.StackTransitionType.SLIDE_UP_DOWN,
+		});
+		this.add(new Gtk.StackSidebar({
+			visible: true,
+			can_focus: false,
+			stack: this._stack,
+		}));
+		this.add(this._stack);
 
-		this._startSection(_("General"));
+		this._loadPageGeneral();
+		this._loadPageRecent();
+		this._loadPagePlaces();
+		// this._loadPageBookmarks();
+		this._loadPageAbout();
+	},
 
-		this._addRow(
+	//--------------------------------------------------------------------------
+
+	_loadPageGeneral () {
+		let page = new QuicklistsPageWidget();
+		this._stack.add_titled(page, 'general', _("General"));
+
+		page.addSettingRow(
 			_("Automatically close the overview"),
-			this.getSwitch('close-overview')
+			page.getSwitch('close-overview')
 		);
-		this._addHelp(_("Close the overview after clicking on a menu item."));
+		page.addHelpLabel(_("Close the overview after clicking on a menu item."));
+	},
 
-		//----------------------------------------------------------------------
-
-		this._startSection(_("Bookmarks"));
-
-		this._addRow(
-			_("Display bookmarks in a submenu"),
-			this.getSwitch('use-submenu-bookmarks')
-		);
-		this._addHelp(_("File managers icons will display your bookmarks. If " +
-		                           "you have many, a submenu is recommended."));
-
-		//----------------------------------------------------------------------
-
-		this._startSection(_("Recent files"));
+	_loadPageRecent () {
+		let page = new QuicklistsPageWidget();
+		this._stack.add_titled(page, 'files', _("Recent files"));
 
 		let recentFilesNumber_spinButton = new Gtk.SpinButton({
 			valign: Gtk.Align.CENTER,
@@ -72,67 +80,118 @@ const QuicklistsPrefsWidget = new Lang.Class({
 				SETTINGS.set_int('max-recents', value);
 			})
 		);
-		this._addRow(
+		page.addSettingRow(
 			_("Number of recent files in a menu"),
 			recentFilesNumber_spinButton
 		);
-		// this._addHelp(_("The maximum number of recent files which will be " +
-		//                     "displayed in the menu of an application's icon."));
+		page.addHelpLabel(_("The maximum number of recent files which will " +
+		                 "be displayed in the menu of an application's icon."));
 
-		this._addRow(
+		page.startSection();
+
+		page.addSettingRow(
 			_("Display recent files in a submenu"),
-			this.getSwitch('use-submenu-recent')
+			page.getSwitch('use-submenu-recent')
 		);
-		this._addHelp(_("Applications' icons will display recently opened " +
-		   "files they can open. If you want many, a submenu is recommended."));
+		page.addHelpLabel(_("Applications' icons will display recently " +
+		         "opened files they can open. If you want many, a submenu is " +
+		                                                       "recommended."));
+	},
 
-		//----------------------------------------------------------------------
+	_loadPagePlaces () {
+		let page = new QuicklistsPageWidget();
+		this._stack.add_titled(page, 'places', _("Bookmarks"));
 
-		this._startSection(_("About"));
+		page.addSettingRow(
+			_("Display bookmarks in a submenu"),
+			page.getSwitch('use-submenu-bookmarks')
+		);
+		page.addHelpLabel(_("File managers icons will display your bookmarks." +
+		                       " If you have many, a submenu is recommended."));
+	},
 
+	loadPageBookmarks () {
+		let page = new QuicklistsPageWidget();
+		this._stack.add_titled(page, 'web', _("Web favorites"));
+
+		// TODO
+	},
+
+	_loadPageAbout () {
+		let page = new QuicklistsPageWidget();
+		this._stack.add_titled(page, 'about', _("About"));
+
+		// TODO en pleine largeur ce button
 		let urlButton = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
 			uri: Me.metadata.url.toString() + "/issues",
 			valign: Gtk.Align.CENTER,
 			halign: Gtk.Align.START
 		});
-		this._addRow(
+		page.addSettingRow(
 			_("Version %s").replace('%s', Me.metadata.version.toString()),
 			urlButton
 		);
 
-		// this._addHelp(_(Me.metadata.description.toString()));
+		// page.addHelpLabel(_(Me.metadata.description.toString()));
 
-		this._addRow(_("Author"), new Gtk.Label({
+		page.startSection();
+
+		page.addSettingRow(_("Author"), new Gtk.Label({
 			halign: Gtk.Align.START,
 			label: "Romain F. T."
 		}));
+
+		// TODO supporter un array de traducteurs
 		if(_('translator-credits') != 'translator-credits') {
-			this._addRow(_("Translator"), new Gtk.Label({
+			page.addSettingRow(_("Translator"), new Gtk.Label({
 				halign: Gtk.Align.START,
 				label: _('translator-credits')
 			}));
 		}
 	},
+});
+
+////////////////////////////////////////////////////////////////////////////////
+
+const QuicklistsPageWidget = new Lang.Class({
+	Name: "QuicklistsPageWidget",
+	Extends: Gtk.Grid,
+
+	_init () {
+		this.parent({
+			visible: true,
+			can_focus: false,
+			halign: Gtk.Align.CENTER,
+			column_spacing: 16,
+			row_spacing: 12,
+			margin: 12
+		});
+		this._currentY = 0;
+	},
 
 	//--------------------------------------------------------------------------
 
-	_startSection (title) {
+	startSection (title = null) {
 		let separator = new Gtk.Separator({
 			valign: Gtk.Align.CENTER
 		});
-		let rowLabel = new Gtk.Label({
-			label: "<b>" + title + "</b>",
-			halign: Gtk.Align.END,
-			use_markup: true
-		});
-		this.attach(rowLabel, 0, this._currentY, 1, 1);
-		this.attach(separator, 1, this._currentY, 2, 1);
+		if(title) {
+			let rowLabel = new Gtk.Label({
+				label: "<b>" + title + "</b>",
+				halign: Gtk.Align.END,
+				use_markup: true
+			});
+			this.attach(rowLabel, 0, this._currentY, 1, 1);
+			this.attach(separator, 1, this._currentY, 2, 1);
+		} else {
+			this.attach(separator, 0, this._currentY, 3, 1);
+		}
 
 		this._currentY++;
 	},
 
-	_addRow (label, widget) {
+	addSettingRow (label, widget) {
 		let rowLabel = new Gtk.Label({
 			label: label,
 			halign: Gtk.Align.END,
@@ -144,7 +203,7 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		this._currentY++;
 	},
 
-	_addHelp (helpLabel) {
+	addHelpLabel (helpLabel) {
 		let rowLabel = new Gtk.Label({
 			label: helpLabel,
 			halign: Gtk.Align.CENTER,
@@ -171,19 +230,19 @@ const QuicklistsPrefsWidget = new Lang.Class({
 	},
 });
 
-//------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 
-function init() {
+function init () {
 	Convenience.initTranslations();
 }
 
 let SETTINGS = Convenience.getSettings();
 
-function buildPrefsWidget() {
+function buildPrefsWidget () {
 	let widget = new QuicklistsPrefsWidget();
 	widget.show_all();
 	return widget;
 }
 
-//------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 
