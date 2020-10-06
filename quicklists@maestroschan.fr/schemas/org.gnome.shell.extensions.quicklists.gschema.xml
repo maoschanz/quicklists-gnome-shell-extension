@@ -10,6 +10,13 @@
         Close automattically the overview each time an item is clicked.
       </description>
     </key>
+    <key type="b" name="enable-search">
+      <default>true</default>
+      <summary>Search in the lists</summary>
+      <description>
+        Provide a search entry to filter the lists added tothe menus.
+      </description>
+    </key>
 
     <!-- Bookmarks -->
     <key type="b" name="use-submenu-bookmarks">

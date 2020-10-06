@@ -59,6 +59,13 @@ const QuicklistsPrefsWidget = new Lang.Class({
 			page.getSwitch('close-overview')
 		);
 		page.addHelpLabel(_("Close the overview after clicking on a menu item."));
+
+		page.startSection();
+
+		page.addSettingRow(
+			_("Searchable lists"),
+			page.getSwitch('enable-search')
+		);
 	},
 
 	_loadPageRecent () {
