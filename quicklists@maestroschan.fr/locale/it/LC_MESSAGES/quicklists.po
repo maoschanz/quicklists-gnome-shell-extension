@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-06 02:11+0200\n"
-"PO-Revision-Date: 2020-10-03 17:00+0200\n"
+"PO-Revision-Date: 2020-11-28 17:00+0200\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -78,7 +78,7 @@ msgstr "Chiudere la panoramica dopo aver fatto clic su una voce di menu."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
-msgstr ""
+msgstr "Elenchi ricercabili"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -89,6 +89,8 @@ msgid ""
 "The maximum number of recent files which will be displayed in the menu of an "
 "application's icon."
 msgstr ""
+"Il numero massimo di file recenti che verrà visualizzato nel menu di un' "
+"icona dell'applicazione."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Display recent files in a submenu"
@@ -115,10 +117,9 @@ msgstr ""
 "un sottomenuè raccomandato."
 
 #: quicklists@maestroschan.fr/prefs.js
-#, fuzzy
 #| msgid "Favorites"
 msgid "Web favorites"
-msgstr "Preferiti"
+msgstr "Web preferiti"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
