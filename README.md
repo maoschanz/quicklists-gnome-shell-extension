@@ -35,10 +35,10 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 ## TODO
 
 - integrate the file list into the appmenu
-- with a search entry ??? in appmenu only, too heavy otherwise
+- with a search entry ??? in appmenu only, too heavy otherwise. For recent only, useless otherwise
 
-- web bookmarks schemas
 - web bookmarks prefs
+- web bookmarks loading
 
 - translators au pluriel
 

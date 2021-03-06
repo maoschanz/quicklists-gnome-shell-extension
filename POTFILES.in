@@ -1,2 +1,6 @@
 quicklists@maestroschan.fr/extension.js
 quicklists@maestroschan.fr/prefs.js
+quicklists@maestroschan.fr/content_loaders/places.js
+quicklists@maestroschan.fr/content_loaders/recentFiles.js
+quicklists@maestroschan.fr/content_loaders/webFavorites.js
+
