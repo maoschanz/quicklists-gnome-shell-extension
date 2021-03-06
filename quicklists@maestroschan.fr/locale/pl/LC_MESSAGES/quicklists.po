@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 02:05+0200\n"
+"POT-Creation-Date: 2021-03-06 14:38+0100\n"
 "PO-Revision-Date: 2019-06-21 05:20+0200\n"
 "Last-Translator: Alex <rylatgl@gmail.com>\n"
 "Language-Team: Polish (https://gitlab.com/alex4401)\n"
@@ -18,56 +18,6 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Recent files"
-msgstr "Ostatnio odwiedzane"
-
-#: quicklists@maestroschan.fr/extension.js
-#, fuzzy
-msgid "No recent file for this app"
-msgstr "Liczba niedawno odwiedzonych plików w menu"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Home"
-msgstr "Katalog domowy"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Computer"
-msgstr "Komputer"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Favorites"
-msgstr "Ulubione"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Trash"
-msgstr "Kosz"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Other places"
-msgstr "Inne miejsca"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Network"
-msgstr "Sieć"
-
-#: quicklists@maestroschan.fr/extension.js
-#, fuzzy
-msgid "No bookmark"
-msgstr "Zakładki"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Error: could not read bookmarks"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Bookmarks"
-msgstr "Zakładki"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Manage extensions"
-msgstr "Zarządzaj rozszerzeniami"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
@@ -84,6 +34,12 @@ msgstr ""
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
 msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "Recent files"
+msgstr "Ostatnio odwiedzane"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -110,6 +66,11 @@ msgstr ""
 "otwierać. Przy dużej ilości zalecane jest pod-menu."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Bookmarks"
+msgstr "Zakładki"
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Wyświetlaj zakładki w pod-menu"
 
@@ -126,10 +87,29 @@ msgstr ""
 "zalecane jest użycie pod-menu."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
 #, fuzzy
 #| msgid "Favorites"
-msgid "Web favorites"
+msgid "Favorite websites"
 msgstr "Ulubione"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Display recent files in a submenu"
+msgid "Display favorite websites in a submenu"
+msgstr "Wyświetlaj niedawno odwiedzone pliki w pod-menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid ""
+#| "Nautilus and Nemo icons will display your bookmarks. If you have many, a "
+#| "submenu is recommended."
+msgid ""
+"Web browsers icons will display your favorite websites (as configured here). "
+"If you have many, a submenu is recommended."
+msgstr ""
+"Ikony Nautilusa i Nemo będą wyświetlać twoje zakładki. Jeśli masz ich wiele, "
+"zalecane jest użycie pod-menu."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -156,5 +136,45 @@ msgstr ""
 msgid "Translator"
 msgstr ""
 
-#~ msgid "Settings"
-#~ msgstr "Ustawienia"
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Home"
+msgstr "Katalog domowy"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Computer"
+msgstr "Komputer"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Favorites"
+msgstr "Ulubione"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Trash"
+msgstr "Kosz"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Other places"
+msgstr "Inne miejsca"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Network"
+msgstr "Sieć"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#, fuzzy
+msgid "No bookmark"
+msgstr "Zakładki"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Error: could not read bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+#, fuzzy
+msgid "No recent file for this app"
+msgstr "Liczba niedawno odwiedzonych plików w menu"
+
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "No favorite website is configured"
+msgstr ""
+

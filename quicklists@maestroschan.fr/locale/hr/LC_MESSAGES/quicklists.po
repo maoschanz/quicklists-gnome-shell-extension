@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 02:05+0200\n"
+"POT-Creation-Date: 2021-03-06 14:38+0100\n"
 "PO-Revision-Date: 2020-01-24 22:29+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -18,56 +18,6 @@ msgstr ""
 "X-Generator: Poedit 1.8.12\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Recent files"
-msgstr "Nedavne datoteke"
-
-#: quicklists@maestroschan.fr/extension.js
-#, fuzzy
-msgid "No recent file for this app"
-msgstr "Broj nedavnih datoteka u izborniku"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Home"
-msgstr "Home"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Computer"
-msgstr "Kompjuter"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Favorites"
-msgstr "Favoriti"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Trash"
-msgstr "Smeće"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Other places"
-msgstr "Ostala mjesta"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Network"
-msgstr "Mreža"
-
-#: quicklists@maestroschan.fr/extension.js
-#, fuzzy
-msgid "No bookmark"
-msgstr "Zabilješke"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Error: could not read bookmarks"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Bookmarks"
-msgstr "Zabilješke"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Manage extensions"
-msgstr "Upravljaj proširenjima"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
@@ -84,6 +34,12 @@ msgstr ""
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
 msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "Recent files"
+msgstr "Nedavne datoteke"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -110,6 +66,11 @@ msgstr ""
 "puno, preporučujemo koristiti podizbornik."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Bookmarks"
+msgstr "Zabilješke"
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Prikaži zabilješke u podizborniku"
 
@@ -126,10 +87,29 @@ msgstr ""
 "preporučujemo koristiti podizbornik."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
 #, fuzzy
 #| msgid "Favorites"
-msgid "Web favorites"
+msgid "Favorite websites"
 msgstr "Favoriti"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Display recent files in a submenu"
+msgid "Display favorite websites in a submenu"
+msgstr "Prikaži nedavne datoteke u podizborniku"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid ""
+#| "Nautilus and Nemo icons will display your bookmarks. If you have many, a "
+#| "submenu is recommended."
+msgid ""
+"Web browsers icons will display your favorite websites (as configured here). "
+"If you have many, a submenu is recommended."
+msgstr ""
+"Nautilus i Nemo ikone će prikazati tvoje zabilješke. Ako ih imaš puno, "
+"preporučujemo koristiti podizbornik."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -155,3 +135,46 @@ msgstr ""
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Home"
+msgstr "Home"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Computer"
+msgstr "Kompjuter"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Favorites"
+msgstr "Favoriti"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Trash"
+msgstr "Smeće"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Other places"
+msgstr "Ostala mjesta"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Network"
+msgstr "Mreža"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#, fuzzy
+msgid "No bookmark"
+msgstr "Zabilješke"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Error: could not read bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+#, fuzzy
+msgid "No recent file for this app"
+msgstr "Broj nedavnih datoteka u izborniku"
+
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "No favorite website is configured"
+msgstr ""
+

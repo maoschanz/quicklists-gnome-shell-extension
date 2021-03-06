@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 02:05+0200\n"
+"POT-Creation-Date: 2021-03-06 14:38+0100\n"
 "PO-Revision-Date: 2020-10-04 13:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -17,54 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Recent files"
-msgstr "Recente bestanden"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No recent file for this app"
-msgstr "Deze toepassing heeft geen recente bestanden"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Home"
-msgstr "Persoonlijke map"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Computer"
-msgstr "Computer"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Favorites"
-msgstr "Favorieten"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Trash"
-msgstr "Prullenbak"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Other places"
-msgstr "Overige locaties"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Network"
-msgstr "Netwerk"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No bookmark"
-msgstr "Geen bladwijzers"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Error: could not read bookmarks"
-msgstr "Fout: kan bladwijzers niet uitlezen"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Bookmarks"
-msgstr "Bladwijzers"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Manage extensions"
-msgstr "Uitbreidingen beheren"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
@@ -81,6 +33,12 @@ msgstr "Sluit het overzicht na het klikken op een menu-item."
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
 msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "Recent files"
+msgstr "Recente bestanden"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -107,6 +65,11 @@ msgstr ""
 "hebt, dan is het aanbevolen een onderliggend menu te gebruiken."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Bookmarks"
+msgstr "Bladwijzers"
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Bladwijzers tonen in onderliggend menu"
 
@@ -119,10 +82,29 @@ msgstr ""
 "aanbevolet een onderliggend menu te maken."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
 #, fuzzy
 #| msgid "Favorites"
-msgid "Web favorites"
+msgid "Favorite websites"
 msgstr "Favorieten"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Display recent files in a submenu"
+msgid "Display favorite websites in a submenu"
+msgstr "Recente bestanden tonen in onderliggend menu"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid ""
+#| "File managers icons will display your bookmarks. If you have many, a "
+#| "submenu is recommended."
+msgid ""
+"Web browsers icons will display your favorite websites (as configured here). "
+"If you have many, a submenu is recommended."
+msgstr ""
+"Bestandsbeheerders tonen je bladwijzers. Als je er veel hebt, dan is het "
+"aanbevolet een onderliggend menu te maken."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -149,5 +131,43 @@ msgstr "Heimen Stoffels"
 msgid "Translator"
 msgstr "Vertaler"
 
-#~ msgid "Settings"
-#~ msgstr "Instellingen"
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Home"
+msgstr "Persoonlijke map"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Computer"
+msgstr "Computer"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Favorites"
+msgstr "Favorieten"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Trash"
+msgstr "Prullenbak"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Other places"
+msgstr "Overige locaties"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Network"
+msgstr "Netwerk"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "No bookmark"
+msgstr "Geen bladwijzers"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Error: could not read bookmarks"
+msgstr "Fout: kan bladwijzers niet uitlezen"
+
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "No recent file for this app"
+msgstr "Deze toepassing heeft geen recente bestanden"
+
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "No favorite website is configured"
+msgstr ""
+

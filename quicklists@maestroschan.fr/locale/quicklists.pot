@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 02:11+0200\n"
+"POT-Creation-Date: 2021-03-06 14:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,54 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Recent files"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No recent file for this app"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Home"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Computer"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Favorites"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Trash"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Other places"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Network"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No bookmark"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Error: could not read bookmarks"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Bookmarks"
-msgstr ""
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Manage extensions"
-msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
@@ -79,6 +31,12 @@ msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "Recent files"
 msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
@@ -102,6 +60,11 @@ msgid ""
 msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr ""
 
@@ -112,7 +75,18 @@ msgid ""
 msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
-msgid "Web favorites"
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "Favorite websites"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid "Display favorite websites in a submenu"
+msgstr ""
+
+#: quicklists@maestroschan.fr/prefs.js
+msgid ""
+"Web browsers icons will display your favorite websites (as configured here). "
+"If you have many, a submenu is recommended."
 msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
@@ -138,4 +112,44 @@ msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Home"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Computer"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Favorites"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Trash"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Other places"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Network"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "No bookmark"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Error: could not read bookmarks"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "No recent file for this app"
+msgstr ""
+
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "No favorite website is configured"
 msgstr ""

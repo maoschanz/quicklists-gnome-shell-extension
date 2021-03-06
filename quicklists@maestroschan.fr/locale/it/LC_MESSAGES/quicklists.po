@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 02:11+0200\n"
+"POT-Creation-Date: 2021-03-06 14:38+0100\n"
 "PO-Revision-Date: 2020-11-28 17:00+0200\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,54 +15,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Recent files"
-msgstr "File recenti"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No recent file for this app"
-msgstr "Nessun file recente per questa app"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Home"
-msgstr "FIle personali"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Computer"
-msgstr "Computer"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Favorites"
-msgstr "Preferiti"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Trash"
-msgstr "Cestino"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Other places"
-msgstr "Altri posti"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Network"
-msgstr "Rete"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "No bookmark"
-msgstr "Nessun segnalibro"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Error: could not read bookmarks"
-msgstr "Errore: impossibile leggere i segnalibri"
-
-#: quicklists@maestroschan.fr/extension.js quicklists@maestroschan.fr/prefs.js
-msgid "Bookmarks"
-msgstr "Segnalibri"
-
-#: quicklists@maestroschan.fr/extension.js
-msgid "Manage extensions"
-msgstr "Gestisci estensioni"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "General"
@@ -79,6 +31,12 @@ msgstr "Chiudere la panoramica dopo aver fatto clic su una voce di menu."
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Searchable lists"
 msgstr "Elenchi ricercabili"
+
+#: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "Recent files"
+msgstr "File recenti"
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Number of recent files in a menu"
@@ -105,6 +63,11 @@ msgstr ""
 "essere aperti. Se tune vuoi molti, si consiglia un sottomenu."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Bookmarks"
+msgstr "Segnalibri"
+
+#: quicklists@maestroschan.fr/prefs.js
 msgid "Display bookmarks in a submenu"
 msgstr "Visualizza i segnalibri in un sottomenu"
 
@@ -117,9 +80,29 @@ msgstr ""
 "un sottomenuè raccomandato."
 
 #: quicklists@maestroschan.fr/prefs.js
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+#, fuzzy
 #| msgid "Favorites"
-msgid "Web favorites"
-msgstr "Web preferiti"
+msgid "Favorite websites"
+msgstr "Preferiti"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid "Display recent files in a submenu"
+msgid "Display favorite websites in a submenu"
+msgstr "Visualizza i file recenti in un sottomenu"
+
+#: quicklists@maestroschan.fr/prefs.js
+#, fuzzy
+#| msgid ""
+#| "File managers icons will display your bookmarks. If you have many, a "
+#| "submenu is recommended."
+msgid ""
+"Web browsers icons will display your favorite websites (as configured here). "
+"If you have many, a submenu is recommended."
+msgstr ""
+"Le icone dei gestori di file mostreranno i tuoi segnalibri. Se ne hai molti, "
+"un sottomenuè raccomandato."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -145,3 +128,43 @@ msgstr "Albano Battistella"
 #: quicklists@maestroschan.fr/prefs.js
 msgid "Translator"
 msgstr "Traduttore"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Home"
+msgstr "FIle personali"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Computer"
+msgstr "Computer"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Favorites"
+msgstr "Preferiti"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Trash"
+msgstr "Cestino"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Other places"
+msgstr "Altri posti"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Network"
+msgstr "Rete"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "No bookmark"
+msgstr "Nessun segnalibro"
+
+#: quicklists@maestroschan.fr/content_loaders/places.js
+msgid "Error: could not read bookmarks"
+msgstr "Errore: impossibile leggere i segnalibri"
+
+#: quicklists@maestroschan.fr/content_loaders/recentFiles.js
+msgid "No recent file for this app"
+msgstr "Nessun file recente per questa app"
+
+#: quicklists@maestroschan.fr/content_loaders/webFavorites.js
+msgid "No favorite website is configured"
+msgstr ""
