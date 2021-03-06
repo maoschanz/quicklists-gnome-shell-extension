@@ -11,6 +11,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 const LoaderRecent = Me.imports.content_loaders.recentFiles;
 const LoaderPlaces = Me.imports.content_loaders.places;
+const LoaderWebFavs = Me.imports.content_loaders.webFavorites;
 
 const Gettext = imports.gettext.domain('quicklists');
 const _ = Gettext.gettext;
@@ -49,13 +50,21 @@ function addRecentFilesLoader() {
 }
 
 /**
- * Add to AppDisplay.AppIconMenu the required methods to load the bookmarks and
- * other file-managing-related items into the menu
+ * Add to AppDisplay.AppIconMenu the required methods to load the places
+ * bookmarks and other file-managing-related items into the menu
  */
 function addPlacesLoader() {
 	AppDisplay.AppIconMenu.prototype._addSpecialPlaces = LoaderPlaces.addSpecialPlaces;
 	AppDisplay.AppIconMenu.prototype._addSpecialPlaceButton = LoaderPlaces.addSpecialPlaceButton
 	AppDisplay.AppIconMenu.prototype._loadBookmarks = LoaderPlaces.loadItems;
+}
+
+/**
+ * Add to AppDisplay.AppIconMenu the required methods to load the favorites
+ * websites into the menu
+ */
+function addWebFavoritesLoader() {
+	AppDisplay.AppIconMenu.prototype._loadWebFavorites = LoaderWebFavs.loadItems;
 }
 
 //------------------------------------------------------------------------------
@@ -111,6 +120,11 @@ function injectInAppsMenus() {
 					case 'nemo.desktop':
 						this._loadBookmarks('nemo');
 					break;
+					// case 'firefox.desktop':
+					// case 'org.gnome.Epiphany.desktop':
+					// case 'google-chrome.desktop':
+					// case 'falkon.desktop':
+					// 	this._loadWebFavorites();
 					default:
 						this._loadRecentFiles();
 					break;
@@ -129,6 +143,8 @@ function enable() {
 
 	addPlacesLoader();
 	addRecentFilesLoader();
+	addWebFavoritesLoader();
+
 	injectInAppsMenus();
 }
 
@@ -137,6 +153,7 @@ function disable() {
 	AppDisplay.AppIconMenu.prototype._loadRecentFiles = null;
 	AppDisplay.AppIconMenu.prototype._addBookmarkButton = null;
 	AppDisplay.AppIconMenu.prototype._loadBookmarks = null;
+	AppDisplay.AppIconMenu.prototype._loadWebFavorites = null;
 }
 
 //------------------------------------------------------------------------------

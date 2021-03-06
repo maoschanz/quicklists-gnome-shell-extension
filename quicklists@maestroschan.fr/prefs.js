@@ -42,7 +42,7 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		this.add(this._stack);
 
 		this._loadPageGeneral();
-		this._loadPageRecent();
+		this._loadPageRecentFiles();
 		this._loadPagePlaces();
 		// this._loadPageBookmarks();
 		this._loadPageAbout();
@@ -68,7 +68,7 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		);
 	},
 
-	_loadPageRecent () {
+	_loadPageRecentFiles () {
 		let page = new QuicklistsPageWidget();
 		this._stack.add_titled(page, 'files', _("Recent files"));
 
@@ -119,9 +119,20 @@ const QuicklistsPrefsWidget = new Lang.Class({
 
 	_loadPageBookmarks () {
 		let page = new QuicklistsPageWidget();
-		this._stack.add_titled(page, 'web', _("Web favorites"));
+		this._stack.add_titled(page, 'web', _("Favorite websites"));
 
-		// TODO
+		page.addSettingRow(
+			_("Display favorite websites in a submenu"),
+			page.getSwitch('use-submenu-webfav')
+		);
+		page.addHelpLabel(_("Web browsers icons will display your favorite" +
+		                                  " websites (as configured here)." +
+		                       " If you have many, a submenu is recommended."));
+
+		page.startSection();
+
+		let allLabels = SETTINGS.get_strv('webfav-labels');
+		let allUrls = SETTINGS.get_strv('webfav-urls');
 	},
 
 	_loadPageAbout () {

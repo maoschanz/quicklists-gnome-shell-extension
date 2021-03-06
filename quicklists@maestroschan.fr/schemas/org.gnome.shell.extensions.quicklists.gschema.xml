@@ -18,10 +18,10 @@
       </description>
     </key>
 
-    <!-- Bookmarks -->
+    <!-- Places bookmarks -->
     <key type="b" name="use-submenu-bookmarks">
       <default>true</default>
-      <summary>Show bookmarks in a submenu</summary>
+      <summary>Show places bookmarks in a submenu</summary>
       <description>
         Putting bookmarks in a submenu allows you to scroll the list, so "True"
         is recommended if many places are bookmarked.
@@ -43,6 +43,31 @@
       <description>
         Putting recent files in a submenu allows you to scroll the list, so
         "True" is recommended if many recent files are displayed.
+      </description>
+    </key>
+    <!-- TODO "show recent files on web browsers" boolean -->
+
+    <!-- Web favorites -->
+    <key type="b" name="use-submenu-webfav">
+      <default>false</default>
+      <summary>Show web favorites in a submenu</summary>
+      <description>
+        Putting web favorites in a submenu allows you to scroll the list, so
+        "True" is recommended if many websites are favorited.
+      </description>
+    </key>
+    <key type="as" name="webfav-labels">
+      <default>["DuckDuckGo", "reddit"]</default>
+      <summary>Labels of favorite websites</summary>
+      <description>
+        ...
+      </description>
+    </key>
+    <key type="as" name="webfav-urls">
+      <default>["https://duckduckgo.com/", "https://old.reddit.com/r/linux/"]</default>
+      <summary>URLs of favorite websites</summary>
+      <description>
+        ...
       </description>
     </key>
 
