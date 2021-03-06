@@ -354,13 +354,6 @@ function injectInAppsMenus() {
 					case 'nemo.desktop':
 						this._loadBookmarks('nemo');
 					break;
-					case 'gnome-tweak-tool.desktop':
-					case 'org.gnome.tweaks.desktop':
-						this._appendSeparator();
-						this.addAction(_("Manage extensions"), () => {
-							Util.trySpawnCommandLine('gnome-shell-extension-prefs');
-						});
-					break;
 					default:
 						this._loadRecentFiles();
 					break;

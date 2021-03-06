@@ -117,7 +117,7 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		                       " If you have many, a submenu is recommended."));
 	},
 
-	loadPageBookmarks () {
+	_loadPageBookmarks () {
 		let page = new QuicklistsPageWidget();
 		this._stack.add_titled(page, 'web', _("Web favorites"));
 
@@ -128,7 +128,6 @@ const QuicklistsPrefsWidget = new Lang.Class({
 		let page = new QuicklistsPageWidget();
 		this._stack.add_titled(page, 'about', _("About"));
 
-		// TODO en pleine largeur ce button
 		let urlButton = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
 			uri: Me.metadata.url.toString() + "/issues",

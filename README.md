@@ -34,8 +34,11 @@ Search "Quicklists" in GNOME Software, or install it from [this website](https:/
 
 ## TODO
 
-- if !appmenu, integrate the file list into the menu
-- with a search entry ???
+- integrate the file list into the appmenu
+- with a search entry ??? in appmenu only, too heavy otherwise
+
+- web bookmarks schemas
+- web bookmarks prefs
 
 - translators au pluriel
 
