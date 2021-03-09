@@ -12,6 +12,7 @@ const Convenience = Me.imports.convenience;
 const LoaderRecent = Me.imports.content_loaders.recentFiles;
 const LoaderPlaces = Me.imports.content_loaders.places;
 const LoaderWebFavs = Me.imports.content_loaders.webFavorites;
+const LoaderCustom = Me.imports.content_loaders.custom;
 
 const Gettext = imports.gettext.domain('quicklists');
 const _ = Gettext.gettext;
@@ -67,6 +68,14 @@ function addWebFavoritesLoader() {
 	AppDisplay.AppIconMenu.prototype._loadWebFavorites = LoaderWebFavs.loadItems;
 }
 
+/**
+ * Add to AppDisplay.AppIconMenu the required methods to load the favorites
+ * websites into the menu
+ */
+function addCustomLoader() {
+	AppDisplay.AppIconMenu.prototype._loadCustom = LoaderCustom.loadItems;
+}
+
 //------------------------------------------------------------------------------
 
 // DO NOT EDIT THIS FUNCTION
@@ -119,6 +128,8 @@ function injectInAppsMenus() {
 					break;
 					case 'nemo.desktop':
 						this._loadBookmarks('nemo');
+					case 'phpstorm_phpstorm.desktop':
+						this._loadCustom();
 					break;
 					// case 'firefox.desktop':
 					// case 'org.gnome.Epiphany.desktop':
@@ -144,6 +155,7 @@ function enable() {
 	addPlacesLoader();
 	addRecentFilesLoader();
 	addWebFavoritesLoader();
+	addCustomLoader();
 
 	injectInAppsMenus();
 }
