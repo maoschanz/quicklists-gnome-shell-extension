@@ -61,7 +61,7 @@ var loadItems = function (commandName) {
 		}
 	} catch(e) {
 		log(e);
-		linesArray = e.toString().match(/.{1,40}/g); // or e.message?
+		let linesArray = e.toString().match(/.{1,40}/g); // or e.message?
 		for(var index in linesArray) {
 			if(index == linesArray.length - 1) {
 				noBookmarkLabel += linesArray[index];
