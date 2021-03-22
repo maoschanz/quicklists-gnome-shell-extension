@@ -1,14 +1,14 @@
 # ITALIAN TRANSLATION FOR QUICKLISTS.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020,2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-06 14:38+0100\n"
-"PO-Revision-Date: 2020-11-28 17:00+0200\n"
+"PO-Revision-Date: 2021-03-19 21:00+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -81,19 +81,16 @@ msgstr ""
 
 #: quicklists@maestroschan.fr/prefs.js
 #: quicklists@maestroschan.fr/content_loaders/webFavorites.js
-#, fuzzy
 #| msgid "Favorites"
 msgid "Favorite websites"
-msgstr "Preferiti"
+msgstr "Siti Web preferiti"
 
 #: quicklists@maestroschan.fr/prefs.js
-#, fuzzy
 #| msgid "Display recent files in a submenu"
 msgid "Display favorite websites in a submenu"
-msgstr "Visualizza i file recenti in un sottomenu"
+msgstr "Visualizza i siti Web preferiti in un sottomenu"
 
 #: quicklists@maestroschan.fr/prefs.js
-#, fuzzy
 #| msgid ""
 #| "File managers icons will display your bookmarks. If you have many, a "
 #| "submenu is recommended."
@@ -101,8 +98,8 @@ msgid ""
 "Web browsers icons will display your favorite websites (as configured here). "
 "If you have many, a submenu is recommended."
 msgstr ""
-"Le icone dei gestori di file mostreranno i tuoi segnalibri. Se ne hai molti, "
-"un sottomenuè raccomandato."
+"Le icone dei browser web mostreranno i tuoi siti web preferiti (come configurato qui)."
+"Se ne hai molti, si consiglia un sottomenu."
 
 #: quicklists@maestroschan.fr/prefs.js
 msgid "About"
@@ -167,4 +164,4 @@ msgstr "Nessun file recente per questa app"
 
 #: quicklists@maestroschan.fr/content_loaders/webFavorites.js
 msgid "No favorite website is configured"
-msgstr ""
+msgstr "Nessun sito Web preferito è configurato"
