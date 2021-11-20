@@ -8,7 +8,6 @@ const AppDisplay = imports.ui.appDisplay;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 const LoaderRecent = Me.imports.content_loaders.recentFiles;
 const LoaderPlaces = Me.imports.content_loaders.places;
 const LoaderWebFavs = Me.imports.content_loaders.webFavorites;
@@ -25,7 +24,7 @@ let INJECTED_METHOD_NAME;
 let INJECTIONS = [];
 
 function init() {
-	Convenience.initTranslations();
+	ExtensionUtils.initTranslations();
 	if(parseInt(ShellVersion.split('.')[1]) > 35) {
 		INJECTED_METHOD_NAME = '_rebuildMenu';
 	} else {
@@ -139,7 +138,7 @@ function injectInAppsMenus() {
 
 function enable() {
 	RECENT_MANAGER = new Gtk.RecentManager();
-	SETTINGS = Convenience.getSettings();
+	SETTINGS = ExtensionUtils.getSettings();
 
 	addPlacesLoader();
 	addRecentFilesLoader();
